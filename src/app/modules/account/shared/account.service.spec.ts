@@ -72,6 +72,17 @@ describe('AccountService', () => {
     }
   });
 
+  it('should get undefined for account by id that does not exist', async () => {
+    try {
+      const account = await service.getAccount(0).toPromise();
+      expect(account).toBe(undefined);
+    }
+    catch (error) {
+      console.error(error);
+      expect(false).toBeTruthy();
+    }
+  });
+
   it('should get all accounts in database', async () => {
     const name = 'accountName';
     const curr = Currency.USD;
@@ -109,7 +120,7 @@ describe('AccountService', () => {
       const accountKey = await service.createAccount(accountName, accountCurrency).toPromise();
       expect(accountKey).toBeGreaterThan(-1);
 
-      const key = await service.createTransaction(accountKey, name, amount, date, recurrence).toPromise();;
+      const key = await service.createTransaction(accountKey, name, amount, date, recurrence).toPromise();
       expect(key).toBeGreaterThan(-1);
       
       const transactions = await service.getTransactions().toPromise();
@@ -121,6 +132,23 @@ describe('AccountService', () => {
         amount: amount,
         recurrence: recurrence
       }));
+    }
+    catch (error) {
+      console.error(error);
+      expect(false).toBeTruthy();
+    }
+  });
+
+  it('should return undefined when creating transaction for account that does not exist', async () => {
+    const name = 'transactionName';
+    const amount = 95.50;
+    const date = new Date();
+    const recurrence = Timespan.Biweekly;
+
+    try {
+      const key = await service.createTransaction(0, name, amount, date, recurrence).toPromise();
+      console.log(key);
+      expect(key).toBe(undefined);
     }
     catch (error) {
       console.error(error);
@@ -163,7 +191,24 @@ describe('AccountService', () => {
     }
   });
 
-  it('should all transactions in the database', async () => {
+  it('should return undefined when getting transaction that does not exist', async () => {
+    const accountName = 'accountName';
+    const accountCurrency = Currency.USD;
+
+    try {
+      const accountKey = await service.createAccount(accountName, accountCurrency).toPromise();
+      expect(accountKey).toBeGreaterThan(-1);
+
+      const transaction = await service.getTransaction(0).toPromise();
+      expect(transaction).toBe(undefined);
+    }
+    catch (error) {
+      console.error(error);
+      expect(false).toBeTruthy();
+    }
+  });
+
+  it('should return all transactions in the database', async () => {
     const accountName = 'accountName';
     const accountCurrency = Currency.USD;
 
