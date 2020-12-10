@@ -8,8 +8,8 @@ import { LoggerModule } from 'ngx-logger';
 
 import { environment } from 'src/environments/environment'
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 import { AccountModule } from './modules/account/account.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { AccountModule } from './modules/account/account.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     LoggerModule.forRoot({
       serverLogLevel: environment.serverLogLevel,
       level: environment.logLevel,

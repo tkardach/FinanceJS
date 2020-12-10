@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+* {
+    font-family: Arial, sans-serif;
+}
+
+p {
+    color: rgb(75, 75, 75);
+}
+
+.currency-color-positive {
+    color: rgb(56, 194, 56);
+}
+
+.currency-color-negative {
+    color: rgb(194, 56, 56);
+}

@@ -21,6 +21,7 @@
     "@angular/router": "~9.0.7",
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
+    "moment": "^2.29.1",
     "ngx-indexed-db": "^6.1.2",
     "ngx-logger": "^4.1.9",
     "rxjs": "~6.5.4",

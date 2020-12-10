@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Account, Currency } from './modules/account/shared/account.model';
+import { Timespan, Transaction } from './modules/account/shared/transaction.model';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Finance';
+  account: Account = {
+    id: 0,
+    name: 'My Account Name',
+    currency: Currency.CAD
+  }
 }

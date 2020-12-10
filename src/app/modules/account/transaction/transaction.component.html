@@ -1,0 +1,11 @@
+<div id="transaction" class="transaction" (click)="onClick($event)">
+    <div class="transaction-content-left">
+        <p id="name">{{getNameString()}}</p>
+    </div>
+    <div class="transaction-content-right">
+        <p 
+            id="amount" 
+            [ngClass]="transaction?.amount < 0 ? 'currency-color-negative' : 'currency-color-positive'">{{getAmountString()}}</p>
+        <i class="fas fa-chevron-right fa-lg chevron"></i>
+    </div>
+</div>

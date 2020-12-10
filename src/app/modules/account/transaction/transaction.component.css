@@ -1,0 +1,66 @@
+@media (max-width: 460px) {
+    .transaction {
+        font-size: 14px;
+    }
+
+    .transaction-content-left {
+        max-width: 40%;
+    }
+
+    #amount {
+        width: 100px;
+        vertical-align: top;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.transaction {
+    min-width: 280px;
+    font-weight: bold;
+    line-height: 75px;
+    height: 75px;
+    cursor:pointer;
+}
+
+.transaction:hover {
+    background-color: whitesmoke;
+}
+
+.transaction-content-left {
+    max-width: 50%;
+    float: left;
+    padding-left: 2%;
+}
+
+#name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.transaction-content-right {
+    float: right;
+    padding-right: 2%;
+}
+
+#amount {
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+    
+    font-weight: bold;
+}
+
+.transaction-content-right .chevron {
+    display: inline-block;
+
+    color: rgb(139, 139, 139);
+    vertical-align: middle;
+    font-size: 25px;
+}
+
+p {
+    margin-bottom: 0;
+}
