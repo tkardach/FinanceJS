@@ -3,7 +3,7 @@ export enum Currency {
     USD = 1,
     EUR = 2,
     JPY = 3,
-    CAD = 5
+    CAD = 4
 }
 
 export interface Account {

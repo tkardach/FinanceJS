@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { Account } from '../shared/account.model';
 import { AccountService } from '../shared/account.service';
@@ -22,11 +23,18 @@ export class AccountBalanceComponent implements OnInit {
   }
 
   @Input() date: Date = new Date();
+  
+  @Output() click: EventEmitter<Account> = new EventEmitter();
 
   
   constructor(private accountService: AccountService, private logger: NGXLogger) { }
 
   ngOnInit(): void {
+  }
+
+  onClick(event: MouseEvent) {
+    event.stopPropagation();
+    this.click.emit(this.account);
   }
 
   reloadAccount(): void {
