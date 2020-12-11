@@ -106,4 +106,14 @@ describe('AccountBalanceComponent', () => {
     let balance = el.querySelector('#balance');
     expect(balance.innerHTML).toBe(getAmountString(setBalance, Currency.CAD));
   }));
+
+  it('should call resloadAccount after changing date', fakeAsync(() => {
+    spyOn(component, 'reloadAccount');
+    component.date = new Date(1965, 1, 5);
+
+    tick();
+    fixture.detectChanges();
+
+    expect(component.reloadAccount).toHaveBeenCalledTimes(1);
+  }));
 });

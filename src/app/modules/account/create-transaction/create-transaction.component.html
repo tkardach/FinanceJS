@@ -1,0 +1,33 @@
+<div class="create-transaction">
+    <div class="create-transaction-form">
+        <p id="title">Transaction</p>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Ex. Income; Bills; Savings">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Amount</mat-label>
+            <input matInput
+                [ngModel]="amount | currencyToNumber | currency:'USD':'symbol'" 
+                (blur)="amount=$event.target.value">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Transaction Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Frequency</mat-label>
+            <mat-select>
+              <mat-option>Once</mat-option>
+              <mat-option>Weekly</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <br>
+        <button mat-raised-button id="create">Create</button>
+  </div>
+</div>

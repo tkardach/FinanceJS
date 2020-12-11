@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 * {
     font-family: Arial, sans-serif;
 }
@@ -14,4 +15,28 @@ p {
 
 .currency-color-negative {
     color: rgb(194, 56, 56);
+}
+
+.mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: rgb(75, 75, 75) !important;
+}
+
+.mat-form-field-underline {
+ /*change color of underline*/
+    color: rgb(75, 75, 75) !important;
+} 
+
+.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color:rgb(56, 194, 56) !important;
+}
+
+.mat-button, .mat-raised-button {
+    background-color: rgb(56, 194, 56);
+    color: white;
+}
+
+button:focus {
+    outline: none!important;
 }

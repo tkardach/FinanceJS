@@ -1,4 +1,4 @@
-.account-balance {
+.account {
     text-align: center;
     min-width: 280px;
     width: 100%;
@@ -6,11 +6,11 @@
     cursor:pointer;
 }
 
-.account-balance:hover {
+.account:hover {
     background-color: whitesmoke;
 }
 
-.account-balance-content {
+.account-content {
     position: relative;
     top: 50%;
     left: 50%;
@@ -19,11 +19,6 @@
 
 #name {
     font-size: 25px;
-}
-
-#balance {
-    font-weight: bold;
-    font-size: 20px;
 }
 
 p {

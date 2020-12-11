@@ -13,6 +13,7 @@ import { getAmountString } from '../shared/utility';
 export class AccountBalanceComponent implements OnInit {
   private _account: Account;
   private _balance: number = 0;
+  private _date: Date = new Date();
 
   @Input() set account(account: Account) {
     this._account = account;
@@ -22,7 +23,14 @@ export class AccountBalanceComponent implements OnInit {
     return this._account;
   }
 
-  @Input() date: Date = new Date();
+  @Input() set date(date: Date) {
+    this._date = date;
+    this.reloadAccount();
+  }
+
+  get date(): Date {
+    return this._date;
+  }
   
   @Output() click: EventEmitter<Account> = new EventEmitter();
 
