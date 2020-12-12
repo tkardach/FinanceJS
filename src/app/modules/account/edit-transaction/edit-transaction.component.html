@@ -4,29 +4,29 @@
         <p id="title">Transaction</p>
         <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput 
+            <input matInput id="name"
                 placeholder="Ex. Income; Bills; Savings" 
-                [ngModel]="transaction?.name" (blur)="transaction ? transaction.name = $event : null">
+                [ngModel]="transaction?.name" (blur)="transaction ? transaction.name = $event.target.value : null">
         </mat-form-field>
     
         <mat-form-field>
             <mat-label>Amount</mat-label>
-            <input matInput
+            <input matInput id="amount"
                 [ngModel]="amount | currencyToNumber | currency:getCurrencyType():'symbol'" (blur)="changeAmount($event.target.value)">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput 
+            <input matInput id="date"
                 [matDatepicker]="picker" 
                 placeholder="Transaction Date"  
-                [ngModel]="transaction?.date" (blur)="transaction ? transaction.date = $event : null">
+                [ngModel]="transaction?.date" (blur)="transaction ? transaction.date = $event.target.value : null">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         
         <mat-form-field>
             <mat-label>Frequency</mat-label>
-            <mat-select  
+            <mat-select id="recurrence"
                 [ngModel]="transaction?.recurrence" (ngModelChange)="transaction ? transaction.recurrence = $event : null">
               <mat-option *ngFor="let item of timespans | enumToArray" [value]="item.index">{{item.name}}</mat-option>
             </mat-select>
@@ -34,7 +34,7 @@
         
         <br>
         <button mat-raised-button 
-            id="edit" 
+            id="submit" 
             [ngClass]="(amount | currencyToNumber) >= 0 ? 'background-positive' : 'background-negative'"
             (click)="onSubmit()">Submit</button>
   </div>

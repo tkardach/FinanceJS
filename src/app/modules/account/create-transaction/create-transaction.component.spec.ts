@@ -81,4 +81,28 @@ describe('CreateTransactionComponent', () => {
     expect(component.date).not.toBeUndefined();
     expect(String(component.date)).toBe(expectedValue);
   }));
+
+  it('should change background and button color when amount is negative', () => {
+    component.amount = '-1555';
+
+    fixture.detectChanges();
+
+    let div = el.querySelector('.create-transaction')
+    let button = el.querySelector('#create')
+
+    expect(div.classList).toContain('background-negative')
+    expect(button.classList).toContain('background-negative')
+  });
+
+  it('should change background and button color when amount is positive', () => {
+    component.amount = '1555';
+
+    fixture.detectChanges();
+
+    let div = el.querySelector('.create-transaction')
+    let button = el.querySelector('#create')
+
+    expect(div.classList).toContain('background-positive')
+    expect(button.classList).toContain('background-positive')
+  });
 });
