@@ -5,7 +5,7 @@
     font-family: Arial, sans-serif;
 }
 
-p {
+p, h1, h2, h3 {
     color: rgb(75, 75, 75);
 }
 
@@ -29,12 +29,23 @@ p {
 
 .mat-form-field-ripple {
     /*change color of underline when focused*/
-    background-color:rgb(56, 194, 56) !important;
+    background-color:rgb(75, 75, 75) !important;
 }
 
 .mat-button, .mat-raised-button {
-    background-color: rgb(56, 194, 56);
+    font-size: 20px;
+    padding: 2px 4px;
     color: white;
+}
+
+.background-positive {
+    transition: background-color 0.5s ease;
+    background-color:  #61ca53;
+}
+
+.background-negative {
+    transition: background-color 0.5s ease;
+    background-color:  #ce3c3c;
 }
 
 button:focus {

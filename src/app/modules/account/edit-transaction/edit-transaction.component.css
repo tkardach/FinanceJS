@@ -1,9 +1,9 @@
-.create-transaction {
+.edit-transaction {
     width: 100%;
     height: 100%;
 }
 
-.create-transaction-form {
+.edit-transaction-form {
     position: relative;
     top: 50%;
     left: 50%;
@@ -17,7 +17,7 @@
     box-shadow: 8px 8px 15px #6b6b6b!important;
 }
 
-.create-transaction-form mat-form-field {
+.edit-transaction-form mat-form-field {
     width: 80%;
     padding-bottom: 5px;
 }
@@ -28,7 +28,7 @@
     padding: 50px 0px;
 }
 
-#create {
+#edit {
     margin-bottom: 50px;
 }
 

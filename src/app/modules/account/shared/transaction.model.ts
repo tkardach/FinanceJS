@@ -9,10 +9,17 @@ export enum Timespan {
     Yearly = 6
 }
 
-export interface Transaction {
+export interface Transaction extends CreateTransaction {
     id: number,
     name: string,
     account: number,
+    amount: number,
+    date: Date,
+    recurrence: Timespan
+}
+
+export interface CreateTransaction {
+    name: string,
     amount: number,
     date: Date,
     recurrence: Timespan

@@ -1,0 +1,18 @@
+<div class="account-page">
+    <div class="account-page-left">
+        <div class="account-description">
+            <app-account [account]="account"></app-account>
+        </div>
+        <div class="transaction-list">
+            <app-transaction 
+                *ngFor="let transaction of transactions" 
+                [transaction]="transaction"
+                (click)="onEditTransaction($event)"></app-transaction>
+        </div>
+    </div>
+    <div class="account-page-right">
+        <div class="shadow"></div>
+        <app-edit-transaction *ngIf="state === 0" [transaction]="editTransaction"></app-edit-transaction>
+        <app-create-transaction *ngIf="state === 1"></app-create-transaction>
+    </div>
+</div>

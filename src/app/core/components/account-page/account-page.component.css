@@ -1,0 +1,44 @@
+.account-page {
+    width: 100%;
+    height: 100%;
+}
+
+.account-page-left {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    right: 61.8vw;
+    bottom: 0px;
+}
+
+.account-description {
+    width: 100%;
+    height: 38.2%;
+}
+
+.transaction-list {
+    width: 100%;
+    height: 61.8%;
+    overflow:hidden; 
+    overflow-y:scroll;
+}
+
+
+.account-page-right {
+    position: absolute;
+    left: 38.2vw;
+    top: 60px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.shadow {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    -moz-box-shadow: inset 8px 8px 15px #929292!important;
+    -webkit-box-shadow: inset 8px 8px 15px #929292!important;
+    box-shadow: inset 8px 8px 15px #6b6b6b!important;
+}

@@ -8,18 +8,21 @@ import { CreateTransactionComponent } from './create-transaction/create-transact
 import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { CurrencyToNumberPipe } from './shared/currency-to-number.pipe';
+import { EditTransactionComponent } from './edit-transaction/edit-transaction.component';
 
 const components = [
   TransactionComponent,
   AccountBalanceComponent,
   AccountComponent,
   CreateTransactionComponent,
-  CurrencyToNumberPipe
+  CurrencyToNumberPipe,
+  EditTransactionComponent
 ]
 
 @NgModule({
   declarations: [
     ...components
+    
     
   ],
   imports: [
@@ -28,7 +31,10 @@ const components = [
     MaterialModule,
     FormsModule
   ],
-  providers: [AccountModule],
+  providers: [
+    AccountModule,
+    CurrencyToNumberPipe
+  ],
   exports: [
     ...components
   ]

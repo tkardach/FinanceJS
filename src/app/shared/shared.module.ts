@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Settings } from './shared.settings';
 import { DBConfig, NgxIndexedDBModule, NgxIndexedDBService } from 'ngx-indexed-db';
+import { EnumToArrayPipe } from './enum-to-array.pipe';
 
 export function migrationFactory() {
   return {
@@ -47,13 +48,18 @@ const dbConfig: DBConfig = {
 }
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    EnumToArrayPipe
+  ],
   imports: [
     CommonModule,
     NgxIndexedDBModule.forRoot(dbConfig)
   ],
   providers: [
     NgxIndexedDBService
+  ],
+  exports: [
+    EnumToArrayPipe
   ]
 })
 export class SharedModule {}

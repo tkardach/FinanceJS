@@ -165,6 +165,17 @@ export class AccountService {
   }
 
   /**
+   * Update the transaction in the database
+   * @param newTransaction new transaction to replace existing
+   */
+  editTransaction(newTransaction: Transaction): Observable<Transaction[]> {
+    return this.dbService.update(
+      Settings.DB_TRANSACTION_STORE, 
+      newTransaction, 
+      newTransaction.id);
+  }
+
+  /**
    * Get all transactions in the database
    * @returns Observable<Transaction[]> all transactions in the database
    */
