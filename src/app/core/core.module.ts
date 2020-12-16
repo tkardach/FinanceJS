@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AccountModule } from '../modules/account/account.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { MaterialModule } from '../material/material.module';
 
 
 const components = [
@@ -27,7 +28,8 @@ const components = [
     CommonModule,
     FormsModule,
     AccountModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   exports: [
     ...components
