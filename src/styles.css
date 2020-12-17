@@ -9,6 +9,11 @@ p, h1, h2, h3, small {
     color: rgb(75, 75, 75);
 }
 
+nav {
+    z-index: 1;
+    min-height: 60px;
+}
+
 .currency-color-positive {
     color: rgb(56, 194, 56);
 }

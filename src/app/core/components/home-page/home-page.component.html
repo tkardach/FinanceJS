@@ -14,7 +14,8 @@
                     <p>Discover how long it will take to reach your goal.</p>
                 </div>
                 <button mat-raised-button 
-                    class="background-positive">Start Planning!</button>
+                    class="background-positive"
+                    [routerLink]="'/create-account'">Start Planning!</button>
             </div>
         </div>
         <div class="existing-account">
@@ -26,7 +27,8 @@
                     <p>Already started?</p>
                 </div>
                 <button mat-raised-button 
-                    class="background-positive">Continue Planning!</button>
+                    class="background-positive"
+                    [routerLink]="'/account'">Continue Planning!</button>
             </div>
         </div>
     </div>

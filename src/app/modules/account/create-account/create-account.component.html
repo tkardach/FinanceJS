@@ -1,0 +1,24 @@
+<div class="create-account" >
+    <div class="create-account-form">
+        <p id="title">{{title}}</p>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput id="name"
+                placeholder="Ex. Checking; Savings; My Account">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select id="currency" 
+                [ngModel]="selectedCurrency" (ngModelChange)="selectedCurrency = $event">
+              <mat-option *ngFor="let item of currencies | enumToArray" [value]="item.index">{{item.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <br>
+        <button mat-raised-button 
+            id="create" 
+            class="background-positive"
+            (click)="onCreate()">Create</button>
+  </div>
+</div>

@@ -9,6 +9,8 @@ import { AccountModule } from '../modules/account/account.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MaterialModule } from '../material/material.module';
+import { CreateAccountPageComponent } from './components/create-account-page/create-account-page.component';
+import { RouterModule } from '@angular/router';
 
 
 const components = [
@@ -16,7 +18,8 @@ const components = [
   FooterComponent,  
   AccountPageComponent,
   HomePageComponent,
-  NavComponent
+  NavComponent,
+  CreateAccountPageComponent
 ];
 
 
@@ -29,7 +32,8 @@ const components = [
     FormsModule,
     AccountModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   exports: [
     ...components

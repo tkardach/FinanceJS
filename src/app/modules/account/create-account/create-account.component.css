@@ -1,0 +1,30 @@
+
+.create-account {
+    width: 100%;
+    height: 100%;
+}
+
+.create-account-form {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.create-account-form mat-form-field {
+    width: 80%;
+    padding-bottom: 5px;
+}
+
+#title {
+    font-weight: bold;
+    font-size: 30px;
+    padding: 30px 0px;
+}
+
+#create {
+    margin-bottom: 50px;
+}
+
+p {
+    margin-bottom: 0;
+}
