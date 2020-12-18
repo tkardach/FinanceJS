@@ -12,6 +12,8 @@ import { MaterialModule } from '../material/material.module';
 import { CreateAccountPageComponent } from './components/create-account-page/create-account-page.component';
 import { RouterModule } from '@angular/router';
 import { AccountPredictionPageComponent } from './components/account-prediction-page/account-prediction-page.component';
+import { ConfigurationModule } from '../modules/configuration/configuration.module';
+import { CreateAccountIntroDialog } from './components/dialogs/create-account-intro-dialog';
 
 
 const components = [
@@ -20,14 +22,15 @@ const components = [
   AccountPageComponent,
   HomePageComponent,
   NavComponent,
-  CreateAccountPageComponent
+  CreateAccountPageComponent,
+  AccountPredictionPageComponent,
+  CreateAccountIntroDialog
 ];
 
 
 @NgModule({
   declarations: [
-    ...components,
-    AccountPredictionPageComponent
+    ...components
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ const components = [
     AccountModule,
     SharedModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    ConfigurationModule
   ],
   exports: [
     ...components

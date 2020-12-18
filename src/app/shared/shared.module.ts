@@ -4,6 +4,7 @@ import { Settings } from './shared.settings';
 import { DBConfig, NgxIndexedDBModule, NgxIndexedDBService } from 'ngx-indexed-db';
 import { EnumToArrayPipe } from './enum-to-array.pipe';
 import { ResponsiveService } from './responsive.service';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 export function migrationFactory() {
   return {
@@ -54,7 +55,8 @@ const dbConfig: DBConfig = {
   ],
   imports: [
     CommonModule,
-    NgxIndexedDBModule.forRoot(dbConfig)
+    NgxIndexedDBModule.forRoot(dbConfig),
+    NgxWebstorageModule.forRoot()
   ],
   providers: [
     NgxIndexedDBService,

@@ -10,4 +10,5 @@ export class Settings {
     public static DB_TRANSACTION_AMOUNT_INDEX = 'amount';
     public static DB_TRANSACTION_DATE_INDEX = 'date';
     public static DB_TRANSACTION_RECURRENCE_INDEX = 'recurrence';
+    public static WS_CONFIGURATION_FIRST_USE_INDEX = 'first-use';
 }

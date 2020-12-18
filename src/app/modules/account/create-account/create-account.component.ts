@@ -7,6 +7,9 @@ import { Currency, CreateAccount } from '../shared/account.model';
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent implements OnInit {
+  // Inputs
+  @Input() name: string;
+  @Input() selectedCurrency: Currency;
   @Input() title: string = "Create Account";
 
   @Output() create = new EventEmitter<CreateAccount>();
@@ -14,9 +17,6 @@ export class CreateAccountComponent implements OnInit {
   // currency array for select drop down
   currencies = Currency;
   
-  // Inputs
-  name: string;
-  selectedCurrency: Currency;
 
   constructor() { }
 
