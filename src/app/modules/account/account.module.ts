@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CurrencyToNumberPipe } from './shared/currency-to-number.pipe';
 import { EditTransactionComponent } from './edit-transaction/edit-transaction.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
 
 const components = [
   TransactionComponent,
@@ -18,7 +19,8 @@ const components = [
   CreateTransactionComponent,
   CurrencyToNumberPipe,
   EditTransactionComponent,
-  CreateAccountComponent
+  CreateAccountComponent,
+  EditAccountComponent
 ]
 
 @NgModule({

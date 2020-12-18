@@ -11,6 +11,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { MaterialModule } from '../material/material.module';
 import { CreateAccountPageComponent } from './components/create-account-page/create-account-page.component';
 import { RouterModule } from '@angular/router';
+import { AccountPredictionPageComponent } from './components/account-prediction-page/account-prediction-page.component';
 
 
 const components = [
@@ -25,7 +26,8 @@ const components = [
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    AccountPredictionPageComponent
   ],
   imports: [
     CommonModule,

@@ -4,34 +4,45 @@
 }
 
 .edit-transaction-form {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color:  #ffffff;
-    width: 60%;
-    border-radius: 10px;
+    margin: auto;
+    width: 100%;
     text-align: center;
-    -moz-box-shadow: 8px 8px 15px #929292!important;
-    -webkit-box-shadow: 8px 8px 15px #929292!important;
-    box-shadow: 8px 8px 15px #6b6b6b!important;
 }
 
 .edit-transaction-form mat-form-field {
     width: 80%;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
+    font-size: 3vh;
+}
+
+#submit {
+    margin-bottom: 8px;
+    font-size: 4vmin;
 }
 
 #title {
     font-weight: bold;
-    font-size: 30px;
-    padding: 50px 0px;
-}
-
-#submit {
-    margin-bottom: 50px;
+    font-size: 8vmin;
+    padding-top: 2vh;
 }
 
 p {
     margin-bottom: 0;
+}
+
+@media (min-height: 600px) and (min-width: 650px) { 
+    .edit-transaction-form mat-form-field {
+        padding-bottom: 5px;
+        font-size: 16px;
+    }
+    
+    #title {
+        font-size: 30px;
+        padding: 50px 0px;
+    }
+    
+    #submit {
+        margin-bottom: 50px;
+        font-size: 20px;
+    }
 }

@@ -1,35 +1,122 @@
-.account-page {
-    width: 100%;
-    height: 100%;
-}
 
-.account-page-left {
+/*#region Common*/
+
+.account-page {
     position: absolute;
-    left: 0;
     top: 60px;
-    right: 61.8vw;
-    bottom: 0px;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .account-description {
     width: 100%;
-    height: 38.2%;
+    height: 35%;
 }
 
 .transaction-list {
     width: 100%;
-    height: 61.8%;
+    height: auto;
     overflow:hidden; 
-    overflow-y:scroll;
+    overflow-y:auto;
 }
 
 
-.account-page-right {
+/*#region Create Transaction Button*/
+
+.create-transaction-button {
+    font-weight: bold;
+    line-height: 75px;
+    height: 75px;
+    cursor:pointer;
+}
+
+.create-transaction-button:hover {
+    background-color: whitesmoke;
+}
+
+.create-transaction-content-left {
+    max-width: 80%;
+    float: left;
+    padding-left: 2%;
+}
+
+.create-transaction-content-left .add {
+    display: inline-block;
+    margin-left: 10px;
+    color: #61ca53;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+#create-transaction-text {
+    display: inline-block;
+    color: rgb(139, 139, 139);
+    text-align: right;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.create-transaction-content-right {
+    float: right;
+    padding-right: 2%;
+}
+
+.create-transaction-content-right .chevron {
+    display: inline-block;
+    color: rgb(139, 139, 139);
+    vertical-align: middle;
+    font-size: 25px;
+}
+/*#endregion*/
+
+p {
+    margin-bottom: 0;
+}
+
+/*#endregion*/
+
+/*#region Mobile*/
+
+.account-page-mobile {
+    width: 100%;
+    height: 100%;
+}
+
+/*#endregion*/
+
+/*#region Web*/
+
+.account-page-left {
+    width: auto;
     position: absolute;
-    left: 38.2vw;
-    top: 60px;
+    left: 0;
+    top: 0px;
+    right: 62%;
+    bottom: 0px;
+}
+
+.account-page-right {
+    width: auto;
+    height: auto;
+    display: block;
+    background-image: linear-gradient(#C7FFB1, white);
+    position: absolute;
+    left: 38%;
+    top: 0px;
     right: 0px;
     bottom: 0px;
+}
+
+.transaction-form-content {
+    width: 80%;
+    height: auto;
+    margin: 5vh auto;
+    background-color: white;
+    border-radius: 10px;
+    -moz-box-shadow: 8px 8px 15px #6b6b6b!important;
+    -webkit-box-shadow: 8px 8px 15px #6b6b6b!important;
+    box-shadow: 8px 8px 15px #6b6b6b!important;
 }
 
 .shadow {
@@ -42,3 +129,5 @@
     -webkit-box-shadow: inset 8px 8px 15px #6b6b6b!important;
     box-shadow: inset 8px 8px 15px #6b6b6b!important;
 }
+
+/*#endregion*/

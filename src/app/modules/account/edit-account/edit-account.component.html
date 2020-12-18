@@ -1,0 +1,25 @@
+<div class="edit-account" >
+    <div class="edit-account-form">
+        <p id="title">Account</p>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput id="name"
+            [ngModel]="account?.name" (blur)="account ? account.name = $event.target.value : null"
+                placeholder="Ex. Checking; Savings; My Account">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select id="currency" 
+                [ngModel]="account?.currency" (ngModelChange)="account ? account.currency = $event : null">
+              <mat-option *ngFor="let item of currencies | enumToArray" [value]="item.index">{{item.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <br>
+        <button mat-raised-button 
+            id="edit" 
+            class="background-positive"
+            (click)="onSubmit()">Submit</button>
+  </div>
+</div>

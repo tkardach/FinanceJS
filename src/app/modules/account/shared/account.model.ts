@@ -11,3 +11,8 @@ export interface Account {
     name: string,
     currency: Currency
 }
+
+export interface CreateAccount {
+    name: string,
+    currency: Currency
+}

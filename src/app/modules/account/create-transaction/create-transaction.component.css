@@ -4,34 +4,45 @@
 }
 
 .create-transaction-form {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color:  #ffffff;
-    width: 60%;
-    border-radius: 10px;
+    margin: auto;
+    width: 100%;
     text-align: center;
-    -moz-box-shadow: 8px 8px 15px #929292!important;
-    -webkit-box-shadow: 8px 8px 15px #929292!important;
-    box-shadow: 8px 8px 15px #6b6b6b!important;
 }
 
 .create-transaction-form mat-form-field {
     width: 80%;
-    padding-bottom: 5px;
+    padding-bottom: .8vh;
+    font-size: 2.4vh;
+}
+
+#create {
+    margin-bottom: 3vh;
+    font-size: 3vmin;
 }
 
 #title {
     font-weight: bold;
-    font-size: 30px;
-    padding: 50px 0px;
-}
-
-#create {
-    margin-bottom: 50px;
+    font-size: 4.6vmin;
+    padding: 6vh 0;
 }
 
 p {
     margin-bottom: 0;
+}
+
+@media (min-height: 650px){ 
+    #title {
+        font-size: 30px;
+        padding: 40px 0px;
+    }
+
+    .create-transaction-form mat-form-field {
+        padding-bottom: 5px;
+        font-size: 16px;
+    }
+    
+    #create {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
 }

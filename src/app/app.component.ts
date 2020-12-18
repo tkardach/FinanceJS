@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Account, Currency } from './modules/account/shared/account.model';
-import { Timespan, Transaction } from './modules/account/shared/transaction.model';
+import { ResponsiveService } from './shared/responsive.service';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +13,15 @@ export class AppComponent {
     id: 0,
     name: 'My Account Name',
     currency: Currency.CAD
+  }
+
+  constructor(private responsiveService: ResponsiveService) {}
+
+  ngOnInit() {
+    this.onResize();
+  }
+
+  onResize() {
+    this.responsiveService.checkWidth();
   }
 }

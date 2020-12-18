@@ -1,9 +1,41 @@
-<div class="account-page">
-    <div class="account-page-left">
+<div class="account-page" *ngIf="isMobile">
+    <div class="account-page-mobile">
         <div class="account-description">
             <app-account [account]="account"></app-account>
         </div>
         <div class="transaction-list">
+            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransaction()">
+                <div class="create-transaction-content-left">
+                    <i class="fas fa-plus add"></i>
+                    <p id="create-transaction-text">Create Transaction</p>
+                </div>
+                <div class="create-transaction-content-right">
+                    <i class="fas fa-chevron-right fa-lg chevron"></i>
+                </div>
+            </div>
+            <app-transaction 
+                *ngFor="let transaction of transactions" 
+                [transaction]="transaction"
+                (click)="onEditTransaction($event)"></app-transaction>
+        </div>
+    </div>
+</div>
+
+<div class="account-page" *ngIf="!isMobile">
+    <div class="account-page-left">
+        <div class="account-description">
+            <app-account [account]="account" (click)="onEditAccount($event)"></app-account>
+        </div>
+        <div class="transaction-list">
+            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransaction()">
+                <div class="create-transaction-content-left">
+                    <i class="fas fa-plus add"></i>
+                    <p id="create-transaction-text">Create Transaction</p>
+                </div>
+                <div class="create-transaction-content-right">
+                    <i class="fas fa-chevron-right fa-lg chevron"></i>
+                </div>
+            </div>
             <app-transaction 
                 *ngFor="let transaction of transactions" 
                 [transaction]="transaction"
@@ -12,7 +44,10 @@
     </div>
     <div class="account-page-right">
         <div class="shadow"></div>
-        <app-edit-transaction *ngIf="state === 0" [transaction]="editTransaction"></app-edit-transaction>
-        <app-create-transaction *ngIf="state === 1"></app-create-transaction>
+        <div id="transaction-form" class="transaction-form-content">
+            <app-edit-transaction *ngIf="state === 0" [transaction]="editTransaction"></app-edit-transaction>
+            <app-create-transaction *ngIf="state === 1"></app-create-transaction>
+            <app-edit-account *ngIf="state === 2" [account]="account"></app-edit-account>
+        </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Settings } from './shared.settings';
 import { DBConfig, NgxIndexedDBModule, NgxIndexedDBService } from 'ngx-indexed-db';
 import { EnumToArrayPipe } from './enum-to-array.pipe';
+import { ResponsiveService } from './responsive.service';
 
 export function migrationFactory() {
   return {
@@ -56,7 +57,8 @@ const dbConfig: DBConfig = {
     NgxIndexedDBModule.forRoot(dbConfig)
   ],
   providers: [
-    NgxIndexedDBService
+    NgxIndexedDBService,
+    ResponsiveService
   ],
   exports: [
     EnumToArrayPipe
