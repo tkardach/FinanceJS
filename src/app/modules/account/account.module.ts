@@ -6,11 +6,12 @@ import { AccountBalanceComponent } from './account-balance/account-balance.compo
 import { AccountComponent } from './account/account.component';
 import { CreateTransactionComponent } from './create-transaction/create-transaction.component';
 import { MaterialModule } from 'src/app/material/material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyToNumberPipe } from './shared/currency-to-number.pipe';
 import { EditTransactionComponent } from './edit-transaction/edit-transaction.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
+import { ConfigurationModule } from '../configuration/configuration.module';
 
 const components = [
   TransactionComponent,
@@ -31,6 +32,7 @@ const components = [
     CommonModule,
     SharedModule,
     MaterialModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [

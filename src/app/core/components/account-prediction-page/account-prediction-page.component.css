@@ -1,0 +1,158 @@
+
+/*#region Common*/
+
+.account-prediction-page {
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.transaction-list {
+    width: 100%;
+    height: auto;
+    overflow:hidden; 
+    overflow-y:auto;
+}
+
+::ng-deep .mat-calendar-body-selected {
+    background-color: #7fe059!important;
+    color: black!important;
+}
+
+/*#endregion*/
+
+p {
+    margin-bottom: 0;
+}
+
+/*#endregion*/
+
+/*#region Mobile*/
+
+.account-prediction-page-mobile {
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.account-balance-mobile {
+    height: 25%;
+}
+
+.calendar-container-mobile {
+    background-color: white;
+}
+
+.calendar-mobile {
+    width: 80vmin;
+    margin: auto;
+}
+
+@media (orientation:landscape) {
+    .account-balance-mobile {
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 60%;
+        right: 0;
+    }
+    
+    .calendar-container-mobile {
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 40%;
+        background-color: white;
+    }
+    
+    .calendar-mobile {
+        width: 60vmin;
+        margin: 15px auto;
+    }
+    
+    .account-prediction-page-mobile {
+        background-color: white;
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+/*#endregion*/
+
+/*#region Web*/
+
+
+.account-balance {
+    width: 100%;
+    height: 30%;
+}
+
+.calendar-container {
+    width: 80%;
+    height: auto;
+    margin: 5vh auto;
+    background-color: white;
+    border-radius: 10px;
+    -moz-box-shadow: 8px 8px 15px #6b6b6b!important;
+    -webkit-box-shadow: 8px 8px 15px #6b6b6b!important;
+    box-shadow: 8px 8px 15px #6b6b6b!important;
+}
+
+.calendar {
+    background-color: transparent;
+}
+
+.account-prediction-page-left {
+    width: auto;
+    position: absolute;
+    background-image: linear-gradient(#C7FFB1, white);
+    left: 0;
+    top: 0px;
+    right: 38%;
+    bottom: 0px;
+}
+
+.account-prediction-page-right {
+    width: auto;
+    height: auto;
+    display: block;
+    position: absolute;
+    left: 62%;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.shadow {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    -moz-box-shadow: inset -8px 8px 15px #6b6b6b!important;
+    -webkit-box-shadow: inset -8px 8px 15px #6b6b6b!important;
+    box-shadow: inset -8px 8px 15px #6b6b6b!important;
+}
+
+@media (orientation:landscape) {
+    .calendar {
+        width: 60vmin;
+        margin: 15px auto;
+    }
+}
+
+/*#endregion*/

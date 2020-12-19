@@ -1,0 +1,13 @@
+<div class="create-transaction-page" [ngClass]="!amountPositive ? 'create-transaction-page-negative' : 'create-transaction-page-positive'">
+    <div class="shadow"></div>
+    <div class="create-transaction">
+        <app-create-transaction 
+            [name]="transactionName" 
+            [title]="transactionTitle"
+            [selectedTimespan]="transactionRecurrence"
+            [date]="transactionDate"
+            [amount]="transactionAmount"
+            (amountChange)="onAmountChange($event)"
+            (create)="onTransactionCreate($event)"></app-create-transaction>
+    </div>
+</div>

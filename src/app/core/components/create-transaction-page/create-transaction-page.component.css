@@ -1,0 +1,52 @@
+.create-transaction-page {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.create-transaction { 
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-color:  #ffffff;
+}
+
+@media(min-width: 650px) {
+    .create-transaction-page-positive {
+        transition: background-color 0.5s ease;
+        background-image: linear-gradient(#C7FFB1, white);
+    }
+
+    .create-transaction-page-negative {
+        transition: background-color 0.5s ease;
+        background-image: linear-gradient(#ffb1b1, white);
+    }
+
+    .create-transaction {
+        max-width: 650px; 
+        height: auto;
+        border-radius: 10px;
+        -moz-box-shadow: 8px 8px 15px #6b6b6b!important;
+        -webkit-box-shadow: 8px 8px 15px #6b6b6b!important;
+        box-shadow: 8px 8px 15px #6b6b6b!important;
+    }
+}
+
+@media(min-width: 650px) and (min-height: 500px) {
+    .create-transaction {
+        margin-top: 15vh;
+    }
+
+    .shadow {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        -moz-box-shadow: inset 0px 23px 15px -15px #6b6b6b!important;
+        -webkit-box-shadow: inset 0px 23px 15px -15px #6b6b6b!important;
+        box-shadow: inset 0px 23px 15px -15px #6b6b6b!important;
+    }
+}

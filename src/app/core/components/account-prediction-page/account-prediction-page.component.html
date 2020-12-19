@@ -1,1 +1,27 @@
-<p>account-prediction-page works!</p>
+<div class="account-prediction-page-mobile" *ngIf="isMobile">
+    <div class="account-balance-mobile">
+        <app-account-balance [account]="account" (click)="onEditAccount($event)"></app-account-balance>
+    </div>
+    <div class="calendar-container-mobile">
+        <mat-calendar class="calendar-mobile" [(selected)]="selectedDate"></mat-calendar>
+    </div>
+</div>
+
+<div class="account-prediction-page" *ngIf="!isMobile">
+    <div class="account-prediction-page-left">
+        <div class="shadow"></div>
+        <div class="calendar-container">
+            <mat-calendar class="calendar" [(selected)]="selectedDate"></mat-calendar>
+        </div>
+    </div>
+    <div class="account-prediction-page-right">
+        <div class="account-balance">
+            <app-account-balance [account]="account" (click)="onEditAccount($event)"></app-account-balance>
+        </div>
+        <div class="transaction-list">
+            <app-transaction 
+                *ngFor="let transaction of transactions" 
+                [transaction]="transaction"></app-transaction>
+        </div>
+    </div>
+</div>

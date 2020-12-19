@@ -1,24 +1,35 @@
 <div class="create-transaction">
-    <div class="create-transaction-form">
-        <p id="title">Transaction</p>
+    <form class="create-transaction-form" [formGroup]="transactionForm" (ngSubmit)="onCreate(transactionForm)">
+        <p id="title">{{title}}</p>
         <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput id="name"
                 placeholder="Ex. Income; Bills; Savings" 
-                [ngModel]="name" (blur)="name=$event.target.value">
+                formControlName="name">
+            <mat-error *ngIf="transactionForm.controls.name.hasError('required')">
+                Name required!
+            </mat-error>
         </mat-form-field>
     
         <mat-form-field>
             <mat-label>Amount</mat-label>
             <input matInput id="amount"
-                [ngModel]="amount | currencyToNumber | currency:getCurrencyType():'symbol'" (blur)="amount=$event.target.value">
+                [value]="amount | currencyToNumber | currency:getCurrencyType():'symbol'" 
+                (blur)="amount=$event.target.value"
+                formControlName="amount">
+            <mat-error *ngIf="transactionForm.controls.amount.hasError('required')">
+                Amount required!
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <input matInput id="date"
                 [matDatepicker]="picker" 
                 placeholder="Transaction Date"  
-                [ngModel]="date" (blur)="date=$event.target.value">
+                formControlName="date">
+            <mat-error *ngIf="transactionForm.controls.date.hasError('required')">
+                Date required!
+            </mat-error>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -26,15 +37,18 @@
         <mat-form-field>
             <mat-label>Frequency</mat-label>
             <mat-select id="recurrence" 
-                [ngModel]="selectedTimespan" (ngModelChange)="selectedTimespan = $event">
+            formControlName="recurrence">
               <mat-option *ngFor="let item of timespans | enumToArray" [value]="item.index">{{item.name}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="transactionForm.controls.recurrence.hasError('required')">
+                Frequency required!
+            </mat-error>
         </mat-form-field>
         
         <br>
         <button mat-raised-button 
             id="create" 
             [ngClass]="(amount | currencyToNumber) >= 0 ? 'background-positive' : 'background-negative'"
-            (click)="onCreate()">Create</button>
-  </div>
+            type="submit">Create</button>
+  </form>
 </div>

@@ -16,5 +16,53 @@ export class ConfigurationService {
     return this._firstUse;
   }
 
+  @LocalStorage(Settings.WS_CONFIGURATION_ACCOUNT_FIRST_USE_INDEX, true)
+  private _accountFirstUse: boolean;
+
+  public set accountFirstUse(accountFirstUse: boolean) {
+    this._accountFirstUse = accountFirstUse;
+  }
+  public get accountFirstUse(): boolean {
+    return this._accountFirstUse;
+  }
+
+  @LocalStorage(Settings.WS_CONFIGURATION_INCOME_FIRST_USE_INDEX, true)
+  private _incomeFirstUse: boolean;
+
+  public set incomeFirstUse(incomeFirstUse: boolean) {
+    this._incomeFirstUse = incomeFirstUse;
+  }
+  public get incomeFirstUse(): boolean {
+    return this._incomeFirstUse;
+  }
+
+  @LocalStorage(Settings.WS_CONFIGURATION_SPENDING_FIRST_USE_INDEX, true)
+  private _spendingFirstUse: boolean;
+
+  public set spendingFirstUse(spendingFirstUse: boolean) {
+    this._spendingFirstUse = spendingFirstUse;
+  }
+  public get spendingFirstUse(): boolean {
+    return this._spendingFirstUse;
+  }
+
+  @LocalStorage(Settings.WS_CONFIGURATION_CURRENT_ACCOUNT_INDEX, -1)
+  private _currentAccount: number;
+
+  public set currentAccount(currentAccount: number) {
+    this._currentAccount = currentAccount;
+  }
+  public get currentAccount(): number {
+    return this._currentAccount;
+  }
+
+  removeTutorial(remove: boolean) {
+    this._firstUse = this._accountFirstUse = this._incomeFirstUse = this._spendingFirstUse = !remove;
+  }
+  
+  resetTutorial() {
+    this._firstUse = this._accountFirstUse = this._incomeFirstUse = this._spendingFirstUse = true;
+  }
+
   constructor() { }
 }

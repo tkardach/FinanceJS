@@ -1,25 +1,27 @@
 <div class="create-account" >
-    <div class="create-account-form">
+    <form class="create-account-form" [formGroup]="createAccount" (ngSubmit)="onCreate(createAccount)">
         <p id="title">{{title}}</p>
         <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput id="name"
-                [(ngModel)]="name"
-                placeholder="Ex. Checking; Savings; My Account">
+                formControlName="name"
+                placeholder="Ex. Checking; Savings; My Account" required>
+            <mat-error *ngIf="createAccount.controls.name.hasError('required')">Name required!</mat-error>
         </mat-form-field>
     
         <mat-form-field>
             <mat-label>Currency</mat-label>
             <mat-select id="currency" 
-                [ngModel]="selectedCurrency" (ngModelChange)="selectedCurrency = $event">
+                formControlName="currency" required>
               <mat-option *ngFor="let item of currencies | enumToArray" [value]="item.index">{{item.name}}</mat-option>
             </mat-select>
+            <mat-error  *ngIf="createAccount.controls.currency.hasError('required')">Currency required!</mat-error>
         </mat-form-field>
         
         <br>
         <button mat-raised-button 
             id="create" 
             class="background-positive"
-            (click)="onCreate()">Create</button>
-  </div>
+            type="submit">Create</button>
+  </form>
 </div>

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { Observable, of } from 'rxjs';
+import { Observable, of, zip } from 'rxjs';
 import { Account, Currency } from './account.model';
 import { Timespan, Transaction } from './transaction.model';
 import { Settings } from '../../../shared/shared.settings';
-import { mergeMap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import * as moment from 'moment';
 
 @Injectable({
@@ -12,7 +12,8 @@ import * as moment from 'moment';
 })
 export class AccountService {
 
-  constructor(private dbService: NgxIndexedDBService) { }
+  constructor(
+    private dbService: NgxIndexedDBService) { }
 
   /**
    * Creates an account in the database
@@ -29,6 +30,16 @@ export class AccountService {
     delete account.id;
 
     return this.dbService.add(Settings.DB_ACCOUNT_STORE, account);
+  }
+
+  /**
+   * Deletes all accounts in the database
+   */
+  deleteAccounts(): Observable<boolean> {
+    return zip(this.dbService.clear(Settings.DB_TRANSACTION_STORE), this.dbService.clear(Settings.DB_ACCOUNT_STORE))
+      .pipe(
+        map(([transResult, accountResult]) => transResult && accountResult)
+      );
   }
 
   /**

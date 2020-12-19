@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Currency, CreateAccount } from '../shared/account.model';
 
 @Component({
@@ -8,11 +9,34 @@ import { Currency, CreateAccount } from '../shared/account.model';
 })
 export class CreateAccountComponent implements OnInit {
   // Inputs
-  @Input() name: string;
-  @Input() selectedCurrency: Currency;
   @Input() title: string = "Create Account";
 
+  // Properties
+  private _name: string;
+  @Input() set name(name: string) {
+    this._name = name;
+    this.createAccount.patchValue({ 'name': this._name })
+  }
+  get name(): string {
+    return this._name;
+  }
+  
+  private _selectedCurrency: Currency;
+  @Input() set selectedCurrency(currency: Currency) {
+    this._selectedCurrency = currency;
+    this.createAccount.patchValue({ 'currency': this._selectedCurrency })
+  }
+  get selectedCurrency(): Currency {
+    return this._selectedCurrency;
+  }
+
   @Output() create = new EventEmitter<CreateAccount>();
+
+  // Form Controls
+  createAccount = new FormGroup({
+    name: new FormControl(this.name, [Validators.required]),
+    currency: new FormControl(this.selectedCurrency, [Validators.required])
+  });
 
   // currency array for select drop down
   currencies = Currency;
@@ -23,10 +47,12 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCreate(): void {
+  onCreate(form: FormGroup): void {
+    if (this.createAccount.invalid) return;
+
     const account: CreateAccount = {
-      name: this.name,
-      currency: this.selectedCurrency
+      name: form.value.name,
+      currency: form.value.currency
     }
 
     this.create.emit(account);

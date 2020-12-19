@@ -4,7 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AccountPageComponent } from './components/account-page/account-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountModule } from '../modules/account/account.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -14,6 +14,11 @@ import { RouterModule } from '@angular/router';
 import { AccountPredictionPageComponent } from './components/account-prediction-page/account-prediction-page.component';
 import { ConfigurationModule } from '../modules/configuration/configuration.module';
 import { CreateAccountIntroDialog } from './components/dialogs/create-account-intro-dialog';
+import { CreateTransactionPageComponent } from './components/create-transaction-page/create-transaction-page.component';
+import { AccountAlreadyExistsDialog } from './components/dialogs/account-already-exists-dialog';
+import { DeleteAccountDialog } from './components/dialogs/delete-account-dialog';
+import { CreateIncomeIntroDialog } from './components/dialogs/create-income-intro-dialog';
+import { CreateSpendingIntroDialog } from './components/dialogs/create-spending-intro-dialog';
 
 
 const components = [
@@ -24,13 +29,18 @@ const components = [
   NavComponent,
   CreateAccountPageComponent,
   AccountPredictionPageComponent,
-  CreateAccountIntroDialog
+  CreateAccountIntroDialog,
+  AccountAlreadyExistsDialog,
+  DeleteAccountDialog,
+  CreateIncomeIntroDialog,
+  CreateSpendingIntroDialog
 ];
 
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    CreateTransactionPageComponent
   ],
   imports: [
     CommonModule,

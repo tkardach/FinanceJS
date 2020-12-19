@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/modules/account/shared/account.service';
+import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private accountService: AccountService,
+    private configurationService: ConfigurationService) { }
 
   ngOnInit(): void {
+    this.configurationService.resetTutorial();
   }
 
+  startPlanning() {
+    this.router.navigate(['/create-account']);
+
+    if (this.configurationService.firstUse) {
+    }
+    else {
+    }
+  }
 }
