@@ -1,10 +1,12 @@
 <div class="account-page" *ngIf="isMobile">
     <div class="account-page-mobile">
         <div class="account-description">
-            <app-account [account]="account"></app-account>
+            <app-account 
+                [account]="account"
+                (click)="onEditAccountSelect($event)"></app-account>
         </div>
         <div class="transaction-list">
-            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransaction()">
+            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransactionSelect()">
                 <div class="create-transaction-content-left">
                     <i class="fas fa-plus add"></i>
                     <p id="create-transaction-text">Create Transaction</p>
@@ -16,7 +18,7 @@
             <app-transaction 
                 *ngFor="let transaction of transactions" 
                 [transaction]="transaction"
-                (click)="onEditTransaction($event)"></app-transaction>
+                (click)="onEditTransactionSelect($event)"></app-transaction>
         </div>
     </div>
 </div>
@@ -24,10 +26,10 @@
 <div class="account-page" *ngIf="!isMobile">
     <div class="account-page-left">
         <div class="account-description">
-            <app-account [account]="account" (click)="onEditAccount($event)"></app-account>
+            <app-account [account]="account" (click)="onEditAccountSelect($event)"></app-account>
         </div>
         <div class="transaction-list">
-            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransaction()">
+            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransactionSelect()">
                 <div class="create-transaction-content-left">
                     <i class="fas fa-plus add"></i>
                     <p id="create-transaction-text">Create Transaction</p>
@@ -39,15 +41,28 @@
             <app-transaction 
                 *ngFor="let transaction of transactions" 
                 [transaction]="transaction"
-                (click)="onEditTransaction($event)"></app-transaction>
+                (click)="onEditTransactionSelect($event)"></app-transaction>
         </div>
     </div>
-    <div class="account-page-right">
+    <div class="account-page-right" [ngClass]="positiveTransaction ? 'positive-gradient' : 'negative-gradient'">
         <div class="shadow"></div>
-        <div id="transaction-form" class="transaction-form-content">
-            <app-edit-transaction *ngIf="state === 0" [transaction]="editTransaction"></app-edit-transaction>
-            <app-create-transaction *ngIf="state === 1"></app-create-transaction>
-            <app-edit-account *ngIf="state === 2" [account]="account"></app-edit-account>
+        <div 
+            id="transaction-form" 
+            class="transaction-form-content">
+            <app-edit-transaction 
+                [ngClass]="state === 0 ? '' : 'hidden'" 
+                [transaction]="editTransaction" 
+                (amountChange)="onTransactionAmountChange($event)"
+                (edit)="onEditTransaction($event)"></app-edit-transaction>
+            <app-create-transaction 
+                *ngIf="state === 1"
+                title="Create Transaction"
+                (amountChange)="onTransactionAmountChange($event)"
+                (create)="onCreateTransaction($event)"></app-create-transaction>
+            <app-edit-account 
+                [ngClass]="state === 2 ? '' : 'hidden'" 
+                [account]="account"
+                (edit)="onEditAccount($event)"></app-edit-account>
         </div>
     </div>
 </div>

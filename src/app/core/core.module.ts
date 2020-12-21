@@ -19,6 +19,8 @@ import { AccountAlreadyExistsDialog } from './components/dialogs/account-already
 import { DeleteAccountDialog } from './components/dialogs/delete-account-dialog';
 import { CreateIncomeIntroDialog } from './components/dialogs/create-income-intro-dialog';
 import { CreateSpendingIntroDialog } from './components/dialogs/create-spending-intro-dialog';
+import { TransactionEdittedDialog } from './components/dialogs/transaction-editted-dialog';
+import { AccountEdittedDialog } from './components/dialogs/account-editted-dialog';
 
 
 const components = [
@@ -29,18 +31,21 @@ const components = [
   NavComponent,
   CreateAccountPageComponent,
   AccountPredictionPageComponent,
+  CreateTransactionPageComponent,
   CreateAccountIntroDialog,
   AccountAlreadyExistsDialog,
   DeleteAccountDialog,
   CreateIncomeIntroDialog,
-  CreateSpendingIntroDialog
+  CreateSpendingIntroDialog,
+  TransactionEdittedDialog,
+  TransactionEdittedDialog,
+  AccountEdittedDialog
 ];
 
 
 @NgModule({
   declarations: [
-    ...components,
-    CreateTransactionPageComponent
+    ...components
   ],
   imports: [
     CommonModule,

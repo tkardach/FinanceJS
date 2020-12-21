@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Currency } from '../shared/account.model';
+import { AccountService } from '../shared/account.service';
 import { CurrencyToNumberPipe } from '../shared/currency-to-number.pipe';
 import { CreateTransaction, Timespan } from '../shared/transaction.model';
 import { getCurrencyType } from '../shared/utility';
@@ -73,7 +74,8 @@ export class CreateTransactionComponent implements OnInit {
   });
 
 
-  constructor(private currencyToNumber: CurrencyToNumberPipe) { }
+  constructor(
+    private currencyToNumber: CurrencyToNumberPipe) { }
 
   ngOnInit(): void {
   }

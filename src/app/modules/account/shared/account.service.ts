@@ -33,6 +33,16 @@ export class AccountService {
   }
 
   /**
+   * Update the account in the database
+   * @param newAccount new account to replace existing
+   */
+  editAccount(newAccount: Account): Observable<Account[]> {
+    return this.dbService.update(
+      Settings.DB_ACCOUNT_STORE, 
+      newAccount);
+  }
+
+  /**
    * Deletes all accounts in the database
    */
   deleteAccounts(): Observable<boolean> {
@@ -101,7 +111,18 @@ export class AccountService {
                 break;
             }
 
-            let occurances: Transaction[] = new Array(numOccurance).fill(trans);
+            let occurances: Transaction[] = Array.from({length: numOccurance}, () => {
+              const transaction: Transaction = {
+                id: trans.id,
+                name: trans.name,
+                date: trans.date,
+                amount: trans.amount,
+                recurrence: trans.recurrence,
+                account: trans.account
+              }
+              return transaction;
+            })
+
             for (let i=0; i<occurances.length; i++) {
               switch (occurances[i].recurrence) {
                 case Timespan.Daily:
@@ -124,10 +145,11 @@ export class AccountService {
                   break;
               }
             }
+            
             accountTransactions = accountTransactions.concat(occurances);
         })
 
-        return of(accountTransactions.sort((a : Transaction, b : Transaction) => a.date.getTime() - b.date.getTime()))
+        return of(accountTransactions.sort((a : Transaction, b : Transaction) => b.date.getTime() - a.date.getTime()))
       })
     )
   }
@@ -182,8 +204,7 @@ export class AccountService {
   editTransaction(newTransaction: Transaction): Observable<Transaction[]> {
     return this.dbService.update(
       Settings.DB_TRANSACTION_STORE, 
-      newTransaction, 
-      newTransaction.id);
+      newTransaction);
   }
 
   /**

@@ -10,17 +10,23 @@
     left: 0;
 }
 
-.transaction-list {
-    width: 100%;
-    height: auto;
-    overflow:hidden; 
-    overflow-y:auto;
-}
-
 ::ng-deep .mat-calendar-body-selected {
     background-color: #7fe059!important;
     color: black!important;
 }
+
+.positive-gradient {
+    -webkit-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+    background-color: #C7FFB1;
+}
+
+.negative-gradient {
+    -webkit-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+    background-color: #ffb1b1;
+}
+
 
 /*#endregion*/
 
@@ -128,13 +134,23 @@ p {
 
 .account-prediction-page-right {
     width: auto;
-    height: auto;
-    display: block;
     position: absolute;
     left: 62%;
     top: 0px;
     right: 0px;
     bottom: 0px;
+}
+
+.transaction-list-container {
+    width: 100%;
+    height: 70%;
+    overflow:hidden; 
+    overflow-y:auto;
+}
+
+.transaction-list {
+    overflow:hidden; 
+    overflow-y:auto;
 }
 
 .shadow {

@@ -1,33 +1,34 @@
-<div class="edit-transaction" 
-    [ngClass]="(amount | currencyToNumber) >= 0 ? 'background-positive' : 'background-negative'">
-    <div class="edit-transaction-form">
+<div class="edit-transaction" >
+    <form class="edit-transaction-form" [formGroup]="transactionForm" (ngSubmit)="onSubmit(transactionForm)">
         <p id="title">Transaction</p>
         <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput id="name"
+            <input matInput
                 placeholder="Ex. Income; Bills; Savings" 
-                [ngModel]="transaction?.name" (blur)="transaction ? transaction.name = $event.target.value : null">
+                formControlName="name">
         </mat-form-field>
     
         <mat-form-field>
             <mat-label>Amount</mat-label>
-            <input matInput id="amount"
-                [ngModel]="amount | currencyToNumber | currency:getCurrencyType():'symbol'" (blur)="changeAmount($event.target.value)">
+            <input matInput
+            [value]="amount | currencyToNumber | currency:getCurrencyType():'symbol'" 
+            (blur)="amount=$event.target.value"
+            formControlName="amount">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput id="date"
+            <input matInput
                 [matDatepicker]="picker" 
-                placeholder="Transaction Date"  
-                [ngModel]="transaction?.date" (blur)="transaction ? transaction.date = $event.target.value : null">
+                placeholder="Transaction Date"   
+                formControlName="date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         
         <mat-form-field>
             <mat-label>Frequency</mat-label>
-            <mat-select id="recurrence"
-                [ngModel]="transaction?.recurrence" (ngModelChange)="transaction ? transaction.recurrence = $event : null">
+            <mat-select
+                formControlName="recurrence">
               <mat-option *ngFor="let item of timespans | enumToArray" [value]="item.index">{{item.name}}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -36,6 +37,6 @@
         <button mat-raised-button 
             id="submit" 
             [ngClass]="(amount | currencyToNumber) >= 0 ? 'background-positive' : 'background-negative'"
-            (click)="onSubmit()">Submit</button>
-  </div>
+            type="submit">Submit</button>
+    </form>
 </div>

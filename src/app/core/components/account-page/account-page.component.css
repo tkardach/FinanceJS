@@ -21,6 +21,10 @@
     overflow-y:auto;
 }
 
+.hidden {
+    display: none;
+    overflow: hidden;
+}
 
 /*#region Create Transaction Button*/
 
@@ -96,11 +100,22 @@ p {
     bottom: 0px;
 }
 
+.positive-gradient {
+    -webkit-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+    background-color: #C7FFB1;
+}
+
+.negative-gradient {
+    -webkit-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+    background-color: #ffb1b1;
+}
+
 .account-page-right {
     width: auto;
     height: auto;
     display: block;
-    background-image: linear-gradient(#C7FFB1, white);
     position: absolute;
     left: 38%;
     top: 0px;
