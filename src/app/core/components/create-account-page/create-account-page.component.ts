@@ -28,8 +28,14 @@ export class CreateAccountPageComponent implements OnInit {
     const accounts = await this.accountService.getAccounts().toPromise();
 
     // If account exists, check if we should use this account
-    if (accounts.length > 0) await this.accountExistsWorkflow();
-
+    if (accounts.length > 0) {
+      if (await this.useExistingAccount()) {
+        this.router.navigate(['predict']);
+        return;
+      } else {
+        this.configurationService.incomeFirstUse = this.configurationService.spendingFirstUse = true;
+      }
+    }
     // If this is the first use, setup the tutorial for this page
     if (this.configurationService.firstUse && this.configurationService.accountFirstUse) {
       this.accountName = "My Checkings Account"
@@ -38,20 +44,26 @@ export class CreateAccountPageComponent implements OnInit {
     }
   }
 
-  async accountExistsWorkflow() {
+  async useExistingAccount(): Promise<boolean> {
     const dialogRef = this.dialog.open(AccountAlreadyExistsDialog);
+    // get result from dialog
     const useThisAccount: boolean = await dialogRef.afterClosed().toPromise();
+
     if (useThisAccount) {
-      this.router.navigate(['create-transaction']);
+      // user chose to continue with existing account
+      return true;
     } else {
+      // user chose to delete existing account
       const dialogRef = this.dialog.open(DeleteAccountDialog);
       const deleteAccount: boolean = await dialogRef.afterClosed().toPromise();
       if (deleteAccount) {
         const success: boolean = await this.accountService.deleteAccounts().toPromise();
         // TODO not successful workflow
+        // return false, the user wants to start over
+        return false;
       } else {
         // Recursive call until user decides what to do
-        await this.accountExistsWorkflow();
+        return await this.useExistingAccount();
       }
     }
   }

@@ -4,15 +4,10 @@
 .account-prediction-page {
     background-color: white;
     position: absolute;
-    top: 60px;
+    top: 76px;
     bottom: 0;
     right: 0;
     left: 0;
-}
-
-::ng-deep .mat-calendar-body-selected {
-    background-color: #7fe059!important;
-    color: black!important;
 }
 
 .positive-gradient {
@@ -41,7 +36,7 @@ p {
 .account-prediction-page-mobile {
     background-color: white;
     position: absolute;
-    top: 60px;
+    top: 76px;
     bottom: 0;
     right: 0;
     left: 0;
@@ -90,7 +85,7 @@ p {
     .account-prediction-page-mobile {
         background-color: white;
         position: absolute;
-        top: 60px;
+        top: 76px;
         bottom: 0;
         left: 0;
         right: 0;
@@ -108,7 +103,8 @@ p {
 }
 
 .calendar-container {
-    width: 80%;
+    display: inline-block;
+    width: auto;
     height: auto;
     margin: 5vh auto;
     background-color: white;
@@ -124,6 +120,7 @@ p {
 
 .account-prediction-page-left {
     width: auto;
+    text-align: center;
     position: absolute;
     background-image: linear-gradient(#C7FFB1, white);
     left: 0;

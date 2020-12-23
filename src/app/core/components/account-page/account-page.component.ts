@@ -6,6 +6,9 @@ import { CreateTransaction, Timespan, Transaction } from 'src/app/modules/accoun
 import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
 import { AccountEdittedDialog } from '../dialogs/account-editted-dialog';
+import { CreateTransactionFormDialog } from '../dialogs/create-transaction-form-dialog';
+import { EditAccountFormDialog } from '../dialogs/edit-account-form-dialog';
+import { EditTransactionFormDialog } from '../dialogs/edit-transaction-form-dialog';
 import { TransactionCreatedDialog } from '../dialogs/transaction-created-dialog';
 import { TransactionEdittedDialog } from '../dialogs/transaction-editted-dialog';
 
@@ -41,7 +44,10 @@ export class AccountPageComponent implements OnInit {
     private accountService: AccountService,
     private responsiveService: ResponsiveService,
     private dialog: MatDialog,
-    private cdRef: ChangeDetectorRef) { }
+    private cdRef: ChangeDetectorRef) {
+      this.onResize();
+      this.responsiveService.checkWidth();
+    }
 
   async ngOnInit(): Promise<void> {
     const id = this.configurationService.currentAccount;
@@ -53,7 +59,6 @@ export class AccountPageComponent implements OnInit {
         // TODO handle errors
       }
     }
-    this.onResize();
   }
 
   onResize() {
@@ -88,27 +93,36 @@ export class AccountPageComponent implements OnInit {
     this.editTransaction = transaction;
     this.state = AccountPageState.EditTransaction;
 
-    // TODO Enable dialogs for mobile version
     if (this.isMobile) {
-
+      const dialogRef = this.dialog.open(EditTransactionFormDialog, {data: transaction});
+      dialogRef.afterClosed().subscribe(result => {
+        if (result)
+          this.onEditTransaction(result);
+      })
     }
   }
 
   onEditAccountSelect(account: Account) {
     this.state = AccountPageState.EditAccount;
     
-    // TODO Enable dialogs for mobile version
     if (this.isMobile) {
-      
+      const dialogRef = this.dialog.open(EditAccountFormDialog, {data: account});
+      dialogRef.afterClosed().subscribe(result => {
+        if (result)
+          this.onEditAccount(result);
+      })
     }
   }
 
   onCreateTransactionSelect() {
     this.state = AccountPageState.CreateTransaction;
     
-    // TODO Enable dialogs for mobile version
     if (this.isMobile) {
-      
+      const dialogRef = this.dialog.open(CreateTransactionFormDialog);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result)
+          this.onCreateTransaction(result);
+      })
     }
   }
 
@@ -120,8 +134,8 @@ export class AccountPageComponent implements OnInit {
       transaction.date,
       transaction.recurrence).subscribe(id => {
         const dialogRef = this.dialog.open(TransactionCreatedDialog);
-        setTimeout(() => {
-          this.getTransactionList();
+        setTimeout(async () => {
+          await this.getTransactionList();
           dialogRef.close();
         }, 2000);
       });
@@ -130,8 +144,8 @@ export class AccountPageComponent implements OnInit {
   onEditTransaction(transaction: Transaction) {
     this.accountService.editTransaction(transaction).subscribe(store => {
         const dialogRef = this.dialog.open(TransactionEdittedDialog);
-        setTimeout(() => {
-          this.getTransactionList();
+        setTimeout(async () => {
+          await this.getTransactionList();
           dialogRef.close();
         }, 2000);
       });
@@ -140,9 +154,9 @@ export class AccountPageComponent implements OnInit {
   onEditAccount(account: Account) {
     this.accountService.editAccount(account).subscribe(store => {
       const dialogRef = this.dialog.open(AccountEdittedDialog);
-      setTimeout(() => {
+      setTimeout(async () => {
+        await this.getAccount();
         dialogRef.close();
-
       }, 2000);
     })
   }

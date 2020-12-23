@@ -1,19 +1,27 @@
-<nav class="navbar navbar-expand-md navbar-light static-top navbar-custom">
-  <a class="navbar-brand" href="#">Finance</a>
+<nav class="navbar navbar-light navbar-expand justify-content-center static-top navbar-custom">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto nav-justified w-100 text-center">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link d-flex flex-column" routerLink="/">
+          <i class="fas fa-home nav-icon"></i>
+          <span class="d-none d-sm-inline">Home</span>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/account">Account</a>
+        <a class="nav-link d-flex flex-column" routerLink="/account">
+          <i class="fas fa-dollar-sign nav-icon"></i>
+          <span class="d-none d-sm-inline">Account</span>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/predict">Predict</a>
+        <a class="nav-link d-flex flex-column" routerLink="/predict">
+          <i class="far fa-eye nav-icon"></i>
+          <span class="d-none d-sm-inline">Predict</span>
+        </a> 
       </li>
     </ul>
   </div>

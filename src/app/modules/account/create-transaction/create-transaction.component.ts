@@ -18,7 +18,7 @@ export class CreateTransactionComponent implements OnInit {
   @Output() amountChange = new EventEmitter<number>();
   
   // Properties
-  private _title: string;
+  private _title: string = "Create Transaction";
   @Input() set title(title: string) {
     this._title = title;
   }

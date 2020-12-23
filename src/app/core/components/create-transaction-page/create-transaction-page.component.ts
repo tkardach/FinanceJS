@@ -59,6 +59,9 @@ export class CreateTransactionPageComponent implements OnInit {
         this.cdRef.detectChanges();
         this.dialog.open(CreateSpendingIntroDialog);
       }
+    } else {
+      // Navigate to predict page
+      this.router.navigate(['predict'])
     }
   }
 
@@ -89,7 +92,8 @@ export class CreateTransactionPageComponent implements OnInit {
               this.router.navigate(['predict'])
           } else if (this.configurationService.spendingFirstUse) {
             this.configurationService.spendingFirstUse = false;
-  
+            this.configurationService.firstUse = false;
+
             // Navigate to predict page
             this.router.navigate(['predict'])
           }

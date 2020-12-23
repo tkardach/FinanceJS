@@ -21,6 +21,9 @@ import { CreateIncomeIntroDialog } from './components/dialogs/create-income-intr
 import { CreateSpendingIntroDialog } from './components/dialogs/create-spending-intro-dialog';
 import { TransactionEdittedDialog } from './components/dialogs/transaction-editted-dialog';
 import { AccountEdittedDialog } from './components/dialogs/account-editted-dialog';
+import { EditTransactionFormDialog } from './components/dialogs/edit-transaction-form-dialog';
+import { CreateTransactionFormDialog } from './components/dialogs/create-transaction-form-dialog';
+import { EditAccountFormDialog } from './components/dialogs/edit-account-form-dialog';
 
 
 const components = [
@@ -39,7 +42,10 @@ const components = [
   CreateSpendingIntroDialog,
   TransactionEdittedDialog,
   TransactionEdittedDialog,
-  AccountEdittedDialog
+  AccountEdittedDialog,
+  EditTransactionFormDialog,
+  CreateTransactionFormDialog,
+  EditAccountFormDialog
 ];
 
 

@@ -29,7 +29,10 @@ export class AccountPredictionPageComponent implements OnInit {
     private configurationService: ConfigurationService,
     private responsiveService: ResponsiveService,
     private accountService: AccountService,
-    private router: Router) { }
+    private router: Router) { 
+      this.onResize();
+      this.responsiveService.checkWidth();
+    }
 
   ngOnInit(): void {
     const id = this.configurationService.currentAccount;
@@ -41,7 +44,6 @@ export class AccountPredictionPageComponent implements OnInit {
         // TODO handle error
       });
     }
-    this.onResize();
   }
 
   onResize() {
