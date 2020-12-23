@@ -42,7 +42,15 @@ export class CreateTransactionPageComponent implements OnInit {
 
     // If going through tutorial, setup instructions
     if (this.configurationService.firstUse) {
-      if (this.configurationService.incomeFirstUse) {
+      if (this.configurationService.balanceFirstUse) {
+        this.transactionName = "My Balance"
+        this.transactionTitle = "How much money do you currently have?";
+        this.transactionRecurrence = Timespan.Once;
+        this.transactionDate = new Date();
+        this.transactionAmount = 0;
+        this.cdRef.detectChanges();
+        this.dialog.open(CreateIncomeIntroDialog);
+      } else if (this.configurationService.incomeFirstUse) {
         this.transactionName = "My Income"
         this.transactionTitle = "How much money do you make in a month?";
         this.transactionRecurrence = Timespan.Monthly;
@@ -78,8 +86,20 @@ export class CreateTransactionPageComponent implements OnInit {
       transaction.recurrence).subscribe((id) => {
         // If tutorial is on, follow tutorial state machine
         if (this.configurationService.firstUse) {
+          // If creating transaction for balance tutorial
+          if (this.configurationService.balanceFirstUse) {
+            this.configurationService.balanceFirstUse = false;
+  
+            // Navigate back to this page for spending tutorial
+            if (this.configurationService.incomeFirstUse || this.configurationService.spendingFirstUse) {
+              this.router.routeReuseStrategy.shouldReuseRoute =() => false;
+              this.router.onSameUrlNavigation = 'reload';
+            }
+            else  // otherwise, navigate to account page
+              this.router.navigate(['predict'])
+          }
           // If creating transaction for income tutorial
-          if (this.configurationService.incomeFirstUse) {
+          else if (this.configurationService.incomeFirstUse) {
             this.configurationService.incomeFirstUse = false;
   
             // Navigate back to this page for spending tutorial

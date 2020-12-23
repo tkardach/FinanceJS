@@ -12,7 +12,9 @@ export class Settings {
     public static DB_TRANSACTION_RECURRENCE_INDEX = 'recurrence';
     public static WS_CONFIGURATION_FIRST_USE_INDEX = 'first-use';
     public static WS_CONFIGURATION_ACCOUNT_FIRST_USE_INDEX = 'account-first-use';
+    public static WS_CONFIGURATION_BALANCE_FIRST_USE_INDEX = 'balance-first-use';
     public static WS_CONFIGURATION_INCOME_FIRST_USE_INDEX = 'income-first-use';
     public static WS_CONFIGURATION_SPENDING_FIRST_USE_INDEX = 'spending-first-use';
+    public static WS_CONFIGURATION_PREDICT_FIRST_USE_INDEX = 'predict-first-use';
     public static WS_CONFIGURATION_CURRENT_ACCOUNT_INDEX = 'current-account';
 }

@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/modules/account/shared/account.model';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { Transaction } from 'src/app/modules/account/shared/transaction.model';
 import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
+import { PredictPageIntroDialog } from '../dialogs/predict-page-intro-dialog';
 
 @Component({
   selector: 'app-account-prediction-page',
@@ -29,6 +31,7 @@ export class AccountPredictionPageComponent implements OnInit {
     private configurationService: ConfigurationService,
     private responsiveService: ResponsiveService,
     private accountService: AccountService,
+    private dialog: MatDialog,
     private router: Router) { 
       this.onResize();
       this.responsiveService.checkWidth();
@@ -43,6 +46,11 @@ export class AccountPredictionPageComponent implements OnInit {
       }, error => {
         // TODO handle error
       });
+    }
+
+    if (this.configurationService.predictFirstUse) {
+      const dialogRef = this.dialog.open(PredictPageIntroDialog);
+      dialogRef.afterClosed().subscribe(() => { this.configurationService.predictFirstUse = false; })
     }
   }
 

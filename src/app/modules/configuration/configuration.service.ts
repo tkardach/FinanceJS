@@ -26,6 +26,16 @@ export class ConfigurationService {
     return this._accountFirstUse;
   }
 
+  @LocalStorage(Settings.WS_CONFIGURATION_BALANCE_FIRST_USE_INDEX, true)
+  private _balanceFirstUse: boolean;
+
+  public set balanceFirstUse(balanceFirstUse: boolean) {
+    this._balanceFirstUse = balanceFirstUse;
+  }
+  public get balanceFirstUse(): boolean {
+    return this._balanceFirstUse;
+  }
+
   @LocalStorage(Settings.WS_CONFIGURATION_INCOME_FIRST_USE_INDEX, true)
   private _incomeFirstUse: boolean;
 
@@ -44,6 +54,16 @@ export class ConfigurationService {
   }
   public get spendingFirstUse(): boolean {
     return this._spendingFirstUse;
+  }
+
+  @LocalStorage(Settings.WS_CONFIGURATION_PREDICT_FIRST_USE_INDEX, true)
+  private _predictFirstUse: boolean;
+
+  public set predictFirstUse(predictFirstUse: boolean) {
+    this._predictFirstUse = predictFirstUse;
+  }
+  public get predictFirstUse(): boolean {
+    return this._predictFirstUse;
   }
 
   @LocalStorage(Settings.WS_CONFIGURATION_CURRENT_ACCOUNT_INDEX, -1)
