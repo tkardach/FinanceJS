@@ -16,6 +16,7 @@ export class HomePageComponent implements OnInit {
     private configurationService: ConfigurationService) { }
 
   ngOnInit(): void {
+    this.configurationService.resetTutorial();
   }
 
   startPlanning() {

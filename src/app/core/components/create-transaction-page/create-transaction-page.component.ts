@@ -6,6 +6,7 @@ import { Timespan, Transaction } from 'src/app/modules/account/shared/transactio
 import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
 import { CreateIncomeIntroDialog } from '../dialogs/create-income-intro-dialog';
 import { CreateSpendingIntroDialog } from '../dialogs/create-spending-intro-dialog';
+import { CreateBalanceIntroDialog } from '../dialogs/create-balance-intro-dialog';
 
 @Component({
   selector: 'app-create-transaction-page',
@@ -49,7 +50,7 @@ export class CreateTransactionPageComponent implements OnInit {
         this.transactionDate = new Date();
         this.transactionAmount = 0;
         this.cdRef.detectChanges();
-        this.dialog.open(CreateIncomeIntroDialog);
+        this.dialog.open(CreateBalanceIntroDialog);
       } else if (this.configurationService.incomeFirstUse) {
         this.transactionName = "My Income"
         this.transactionTitle = "How much money do you make in a month?";
@@ -94,6 +95,7 @@ export class CreateTransactionPageComponent implements OnInit {
             if (this.configurationService.incomeFirstUse || this.configurationService.spendingFirstUse) {
               this.router.routeReuseStrategy.shouldReuseRoute =() => false;
               this.router.onSameUrlNavigation = 'reload';
+              this.router.navigate(['create-transaction']);
             }
             else  // otherwise, navigate to account page
               this.router.navigate(['predict'])

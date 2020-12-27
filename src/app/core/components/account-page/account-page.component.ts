@@ -11,6 +11,7 @@ import { EditAccountFormDialog } from '../dialogs/edit-account-form-dialog';
 import { EditTransactionFormDialog } from '../dialogs/edit-transaction-form-dialog';
 import { TransactionCreatedDialog } from '../dialogs/transaction-created-dialog';
 import { TransactionEdittedDialog } from '../dialogs/transaction-editted-dialog';
+import { Router } from '@angular/router';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -44,7 +45,8 @@ export class AccountPageComponent implements OnInit {
     private accountService: AccountService,
     private responsiveService: ResponsiveService,
     private dialog: MatDialog,
-    private cdRef: ChangeDetectorRef) {
+    private cdRef: ChangeDetectorRef,
+    private router: Router) {
       this.onResize();
       this.responsiveService.checkWidth();
     }
@@ -58,6 +60,8 @@ export class AccountPageComponent implements OnInit {
       } catch {
         // TODO handle errors
       }
+    } else {
+      this.router.navigate(['/create-account']);
     }
   }
 

@@ -46,6 +46,8 @@ export class AccountPredictionPageComponent implements OnInit {
       }, error => {
         // TODO handle error
       });
+    } else {
+      this.router.navigate(['/create-account']);
     }
 
     if (this.configurationService.predictFirstUse) {

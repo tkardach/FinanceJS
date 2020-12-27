@@ -77,11 +77,13 @@ export class ConfigurationService {
   }
 
   removeTutorial(remove: boolean) {
-    this._firstUse = this._accountFirstUse = this._incomeFirstUse = this._spendingFirstUse = !remove;
+    this._firstUse = this._accountFirstUse = this._incomeFirstUse = 
+    this._spendingFirstUse = this._balanceFirstUse = this._predictFirstUse = !remove;
   }
   
   resetTutorial() {
-    this._firstUse = this._accountFirstUse = this._incomeFirstUse = this._spendingFirstUse = true;
+    this._firstUse = this._accountFirstUse = this._incomeFirstUse = 
+    this._spendingFirstUse = this._balanceFirstUse = this._predictFirstUse = true;
   }
 
   constructor() { }
