@@ -71,6 +71,7 @@ export class AccountPredictionPageComponent implements OnInit {
       });
     } else {
       this.router.navigate(['/create-account']);
+      return;
     }
   }
 
