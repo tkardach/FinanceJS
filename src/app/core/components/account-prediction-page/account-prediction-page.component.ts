@@ -48,6 +48,7 @@ export class AccountPredictionPageComponent implements OnInit {
       });
     } else {
       this.router.navigate(['/create-account']);
+      return;
     }
 
     if (this.configurationService.predictFirstUse) {
