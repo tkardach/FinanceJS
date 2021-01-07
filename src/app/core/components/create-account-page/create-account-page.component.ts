@@ -58,6 +58,7 @@ export class CreateAccountPageComponent implements OnInit {
       const deleteAccount: boolean = await dialogRef.afterClosed().toPromise();
       if (deleteAccount) {
         const success: boolean = await this.accountService.deleteAccounts().toPromise();
+        this.configurationService.currentAccount = -1;
         // TODO not successful workflow
         // return false, the user wants to start over
         return false;

@@ -1,0 +1,12 @@
+<div id="transaction" class="transaction" (click)="onClick()">
+  <div class="transaction-content-left">
+      <div class="info">
+          <p id="name">{{getNameString()}}</p>
+          <p id="date">{{getDateString()}}</p>
+      </div>
+  </div>
+  <div class="transaction-content-right">
+      <p id="amount" 
+          [ngClass]="transaction?.amount < 0 ? 'currency-color-negative' : 'currency-color-positive'">{{getAmountString()}}</p>
+  </div>
+</div>

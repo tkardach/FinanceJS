@@ -26,6 +26,7 @@ import { CreateTransactionFormDialog } from './components/dialogs/create-transac
 import { EditAccountFormDialog } from './components/dialogs/edit-account-form-dialog';
 import { CreateBalanceIntroDialog } from './components/dialogs/create-balance-intro-dialog';
 import { PredictPageIntroDialog } from './components/dialogs/predict-page-intro-dialog';
+import { ContinueTutorialDialog } from './components/dialogs/continue-tutorial-dialog';
 
 
 const components = [
@@ -49,7 +50,8 @@ const components = [
   CreateTransactionFormDialog,
   EditAccountFormDialog,
   CreateBalanceIntroDialog,
-  PredictPageIntroDialog
+  PredictPageIntroDialog,
+  ContinueTutorialDialog
 ];
 
 

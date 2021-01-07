@@ -12,6 +12,7 @@ import { EditTransactionComponent } from './edit-transaction/edit-transaction.co
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { ConfigurationModule } from '../configuration/configuration.module';
+import { ViewTransactionComponent } from './view-transaction/view-transaction.component';
 
 const components = [
   TransactionComponent,
@@ -21,7 +22,8 @@ const components = [
   CurrencyToNumberPipe,
   EditTransactionComponent,
   CreateAccountComponent,
-  EditAccountComponent
+  EditAccountComponent,
+  ViewTransactionComponent
 ]
 
 @NgModule({

@@ -12,6 +12,7 @@ import { EditTransactionFormDialog } from '../dialogs/edit-transaction-form-dial
 import { TransactionCreatedDialog } from '../dialogs/transaction-created-dialog';
 import { TransactionEdittedDialog } from '../dialogs/transaction-editted-dialog';
 import { Router } from '@angular/router';
+import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -57,6 +58,23 @@ export class AccountPageComponent implements OnInit {
       try {
         await this.getAccount();
         await this.getTransactionList();
+
+        if (this.configurationService.balanceFirstUse ||
+          this.configurationService.incomeFirstUse ||
+          this.configurationService.spendingFirstUse) {
+          const dialogRef = this.dialog.open(ContinueTutorialDialog);
+          const continueTutorial: boolean = await dialogRef.afterClosed().toPromise();
+          if (continueTutorial) {
+            this.router.navigate(['/create-transaction']);
+            return;
+          }
+          else {
+            this.configurationService.balanceFirstUse = 
+            this.configurationService.incomeFirstUse = 
+            this.configurationService.spendingFirstUse =
+            this.configurationService.accountFirstUse = false;
+          }
+        }
       } catch {
         // TODO handle errors
       }
@@ -75,6 +93,10 @@ export class AccountPageComponent implements OnInit {
     const id = this.configurationService.currentAccount;
     try {
       this.account = await this.accountService.getAccount(id).toPromise();
+
+      if (!this.account) {
+        this.router.navigate(['/create-account']);
+      }
     } catch {
       // TODO handle errors
     }

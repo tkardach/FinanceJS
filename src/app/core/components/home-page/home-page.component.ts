@@ -12,11 +12,9 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private accountService: AccountService,
     private configurationService: ConfigurationService) { }
 
   ngOnInit(): void {
-    this.configurationService.resetTutorial();
   }
 
   startPlanning() {

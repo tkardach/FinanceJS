@@ -7,6 +7,7 @@ import { Transaction } from 'src/app/modules/account/shared/transaction.model';
 import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
 import { PredictPageIntroDialog } from '../dialogs/predict-page-intro-dialog';
+import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
 
 @Component({
   selector: 'app-account-prediction-page',
@@ -40,19 +41,36 @@ export class AccountPredictionPageComponent implements OnInit {
   ngOnInit(): void {
     const id = this.configurationService.currentAccount;
     if (id !== -1) {
-      this.accountService.getAccount(id).subscribe(account => {
+      this.accountService.getAccount(id).subscribe(async account => {
         this.account = account;
         this.onDateChange();
+
+        if (this.configurationService.balanceFirstUse ||
+            this.configurationService.incomeFirstUse ||
+            this.configurationService.spendingFirstUse) {
+          const dialogRef = this.dialog.open(ContinueTutorialDialog);
+          const continueTutorial: boolean = await dialogRef.afterClosed().toPromise();
+          if (continueTutorial) {
+            this.router.navigate(['/create-transaction']);
+            return;
+          }
+          else {
+            this.configurationService.balanceFirstUse = 
+            this.configurationService.incomeFirstUse = 
+            this.configurationService.spendingFirstUse =
+            this.configurationService.accountFirstUse = false;
+          }
+        }
+
+        if (this.configurationService.predictFirstUse) {
+          const dialogRef = this.dialog.open(PredictPageIntroDialog);
+          dialogRef.afterClosed().subscribe(() => { this.configurationService.predictFirstUse = false; })
+        }
       }, error => {
         // TODO handle error
       });
     } else {
       this.router.navigate(['/create-account']);
-    }
-
-    if (this.configurationService.predictFirstUse) {
-      const dialogRef = this.dialog.open(PredictPageIntroDialog);
-      dialogRef.afterClosed().subscribe(() => { this.configurationService.predictFirstUse = false; })
     }
   }
 
