@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Account } from 'src/app/modules/account/shared/account.model';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { Transaction } from 'src/app/modules/account/shared/transaction.model';
-import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
+import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
 import { PredictPageIntroDialog } from '../dialogs/predict-page-intro-dialog';
 import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
@@ -57,8 +57,7 @@ export class AccountPredictionPageComponent implements OnInit {
           else {
             this.configurationService.balanceFirstUse = 
             this.configurationService.incomeFirstUse = 
-            this.configurationService.spendingFirstUse =
-            this.configurationService.accountFirstUse = false;
+            this.configurationService.spendingFirstUse = false;
           }
         }
 

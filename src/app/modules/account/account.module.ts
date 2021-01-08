@@ -11,7 +11,6 @@ import { CurrencyToNumberPipe } from './shared/currency-to-number.pipe';
 import { EditTransactionComponent } from './edit-transaction/edit-transaction.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
-import { ConfigurationModule } from '../configuration/configuration.module';
 import { ViewTransactionComponent } from './view-transaction/view-transaction.component';
 
 const components = [

@@ -12,7 +12,6 @@ import { MaterialModule } from '../material/material.module';
 import { CreateAccountPageComponent } from './components/create-account-page/create-account-page.component';
 import { RouterModule } from '@angular/router';
 import { AccountPredictionPageComponent } from './components/account-prediction-page/account-prediction-page.component';
-import { ConfigurationModule } from '../modules/configuration/configuration.module';
 import { CreateAccountIntroDialog } from './components/dialogs/create-account-intro-dialog';
 import { CreateTransactionPageComponent } from './components/create-transaction-page/create-transaction-page.component';
 import { AccountAlreadyExistsDialog } from './components/dialogs/account-already-exists-dialog';
@@ -65,8 +64,7 @@ const components = [
     AccountModule,
     SharedModule,
     MaterialModule,
-    RouterModule,
-    ConfigurationModule
+    RouterModule
   ],
   exports: [
     ...components

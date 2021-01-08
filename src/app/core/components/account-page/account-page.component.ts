@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Account } from 'src/app/modules/account/shared/account.model';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { CreateTransaction, Timespan, Transaction } from 'src/app/modules/account/shared/transaction.model';
-import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
+import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
 import { AccountEdittedDialog } from '../dialogs/account-editted-dialog';
 import { CreateTransactionFormDialog } from '../dialogs/create-transaction-form-dialog';

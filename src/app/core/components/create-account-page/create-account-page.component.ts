@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Account, Currency } from 'src/app/modules/account/shared/account.model';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
-import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
+import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { AccountAlreadyExistsDialog } from '../dialogs/account-already-exists-dialog';
 import { CreateAccountIntroDialog } from '../dialogs/create-account-intro-dialog';
 import { DeleteAccountDialog } from '../dialogs/delete-account-dialog';
@@ -74,12 +74,13 @@ export class CreateAccountPageComponent implements OnInit {
       // On success, set current account id; turn off account first use, navigate to next page
       this.configurationService.currentAccount = id;
       this.configurationService.accountFirstUse = false;
-      if (this.configurationService.firstUse)
+      if (this.configurationService.firstUse) 
         this.router.navigate(['create-transaction']);
       else 
-        this.router.navigate(['prediction'])
+        this.router.navigate(['predict'])
     }, (error) => {
       // TODO handle account creation failure
+      console.log(error);
     })
   }
 }

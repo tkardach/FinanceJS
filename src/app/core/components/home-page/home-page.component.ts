@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
-import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
+import { ConfigurationService } from 'src/app/shared/configuration.service';
 
 @Component({
   selector: 'app-home-page',

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { Timespan, Transaction } from 'src/app/modules/account/shared/transaction.model';
-import { ConfigurationService } from 'src/app/modules/configuration/configuration.service';
+import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { CreateIncomeIntroDialog } from '../dialogs/create-income-intro-dialog';
 import { CreateSpendingIntroDialog } from '../dialogs/create-spending-intro-dialog';
 import { CreateBalanceIntroDialog } from '../dialogs/create-balance-intro-dialog';
@@ -42,35 +42,33 @@ export class CreateTransactionPageComponent implements OnInit {
     }
 
     // If going through tutorial, setup instructions
-    if (this.configurationService.firstUse) {
-      if (this.configurationService.balanceFirstUse) {
-        this.transactionName = "My Balance"
-        this.transactionTitle = "How much money do you currently have?";
-        this.transactionRecurrence = Timespan.Once;
-        this.transactionDate = new Date();
-        this.transactionAmount = 0;
-        this.cdRef.detectChanges();
-        this.dialog.open(CreateBalanceIntroDialog);
-      } else if (this.configurationService.incomeFirstUse) {
-        this.transactionName = "My Income"
-        this.transactionTitle = "How much money do you make in a month?";
-        this.transactionRecurrence = Timespan.Monthly;
-        this.transactionDate = new Date();
-        this.transactionAmount = 500;
-        this.cdRef.detectChanges();
-        this.dialog.open(CreateIncomeIntroDialog);
-      } else if (this.configurationService.spendingFirstUse) {
-        this.transactionName = "My Spending"
-        this.transactionTitle = "How much money do you spend in a month?";
-        this.transactionRecurrence = Timespan.Monthly;
-        this.transactionDate = new Date();
-        this.transactionAmount = -500;
-        this.cdRef.detectChanges();
-        this.dialog.open(CreateSpendingIntroDialog);
-      }
+    if (this.configurationService.balanceFirstUse) {
+      this.transactionName = "My Balance"
+      this.transactionTitle = "How much money do you currently have?";
+      this.transactionRecurrence = Timespan.Once;
+      this.transactionDate = new Date();
+      this.transactionAmount = 0;
+      this.cdRef.detectChanges();
+      this.dialog.open(CreateBalanceIntroDialog);
+    } else if (this.configurationService.incomeFirstUse) {
+      this.transactionName = "My Income"
+      this.transactionTitle = "How much money do you make in a month?";
+      this.transactionRecurrence = Timespan.Monthly;
+      this.transactionDate = new Date();
+      this.transactionAmount = 500;
+      this.cdRef.detectChanges();
+      this.dialog.open(CreateIncomeIntroDialog);
+    } else if (this.configurationService.spendingFirstUse) {
+      this.transactionName = "My Spending"
+      this.transactionTitle = "How much money do you spend in a month?";
+      this.transactionRecurrence = Timespan.Monthly;
+      this.transactionDate = new Date();
+      this.transactionAmount = -500;
+      this.cdRef.detectChanges();
+      this.dialog.open(CreateSpendingIntroDialog);
     } else {
       // Navigate to predict page
-      this.router.navigate(['predict'])
+      this.router.navigate(['predict']);
     }
   }
 
