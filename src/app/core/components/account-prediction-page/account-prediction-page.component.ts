@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/modules/account/shared/account.model';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { Transaction } from 'src/app/modules/account/shared/transaction.model';
@@ -8,6 +8,8 @@ import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
 import { PredictPageIntroDialog } from '../dialogs/predict-page-intro-dialog';
 import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
+import { TutorialService } from 'src/app/shared/tutorial.service';
+import { TutorialState } from 'src/app/shared/tutorial.model';
 
 @Component({
   selector: 'app-account-prediction-page',
@@ -18,6 +20,9 @@ export class AccountPredictionPageComponent implements OnInit {
   isMobile: boolean;
   transactions: Transaction[];
   account: Account;
+
+  tutorialState: TutorialState;
+  continueTutorial: boolean;
 
   private _selectedDate = new Date();
   @Input() set selectedDate(date: Date) {
@@ -32,36 +37,36 @@ export class AccountPredictionPageComponent implements OnInit {
     private configurationService: ConfigurationService,
     private responsiveService: ResponsiveService,
     private accountService: AccountService,
+    private tutorialService: TutorialService,
     private dialog: MatDialog,
+    private route: ActivatedRoute,
     private router: Router) { 
       this.onResize();
       this.responsiveService.checkWidth();
+
+      this.tutorialState = parseInt(this.route.snapshot.paramMap.get('tutorial'));
+      this.continueTutorial = JSON.parse(this.route.snapshot.paramMap.get('continueTutorial'));
     }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    if (this.continueTutorial) {
+      const dialogRef = this.dialog.open(ContinueTutorialDialog);
+      const result = await dialogRef.afterClosed().toPromise();
+      if (result) {
+        this.tutorialService.continueTutorial();
+        return;
+      } else {
+        this.tutorialService.skipTutorial();
+      }
+    }
+    
     const id = this.configurationService.currentAccount;
     if (id !== -1) {
       this.accountService.getAccount(id).subscribe(async account => {
         this.account = account;
         this.onDateChange();
 
-        if (this.configurationService.balanceFirstUse ||
-            this.configurationService.incomeFirstUse ||
-            this.configurationService.spendingFirstUse) {
-          const dialogRef = this.dialog.open(ContinueTutorialDialog);
-          const continueTutorial: boolean = await dialogRef.afterClosed().toPromise();
-          if (continueTutorial) {
-            this.router.navigate(['/create-transaction']);
-            return;
-          }
-          else {
-            this.configurationService.balanceFirstUse = 
-            this.configurationService.incomeFirstUse = 
-            this.configurationService.spendingFirstUse = false;
-          }
-        }
-
-        if (this.configurationService.predictFirstUse) {
+        if (this.tutorialState === TutorialState.FirstPrediction) {
           const dialogRef = this.dialog.open(PredictPageIntroDialog);
           dialogRef.afterClosed().subscribe(() => { this.configurationService.predictFirstUse = false; })
         }

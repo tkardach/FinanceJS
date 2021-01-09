@@ -9,6 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   export class AccountAlreadyExistsDialog {
   
     constructor(
-      public dialogRef: MatDialogRef<AccountAlreadyExistsDialog>) {}
-  
+      public dialogRef: MatDialogRef<AccountAlreadyExistsDialog>) {
+        dialogRef.disableClose = true;
+      }
   }

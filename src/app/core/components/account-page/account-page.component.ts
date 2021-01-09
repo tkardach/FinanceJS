@@ -11,8 +11,10 @@ import { EditAccountFormDialog } from '../dialogs/edit-account-form-dialog';
 import { EditTransactionFormDialog } from '../dialogs/edit-transaction-form-dialog';
 import { TransactionCreatedDialog } from '../dialogs/transaction-created-dialog';
 import { TransactionEdittedDialog } from '../dialogs/transaction-editted-dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
+import { TutorialService } from 'src/app/shared/tutorial.service';
+import { r3JitTypeSourceSpan } from '@angular/compiler';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -31,6 +33,7 @@ export class AccountPageComponent implements OnInit {
   editTransaction: Transaction;
   state = AccountPageState.CreateTransaction;
   isMobile: boolean;
+  continueTutorial: boolean;
 
   private _positiveTransaction: boolean = true;
   set positiveTransaction(positive: boolean) {
@@ -45,36 +48,34 @@ export class AccountPageComponent implements OnInit {
     private configurationService: ConfigurationService,
     private accountService: AccountService,
     private responsiveService: ResponsiveService,
+    private tutorialService: TutorialService,
     private dialog: MatDialog,
     private cdRef: ChangeDetectorRef,
+    private route: ActivatedRoute,
     private router: Router) {
       this.onResize();
       this.responsiveService.checkWidth();
+
+      this.continueTutorial = JSON.parse(this.route.snapshot.paramMap.get('continueTutorial'));
     }
 
   async ngOnInit(): Promise<void> {
+    if (this.continueTutorial) {
+      const dialogRef = this.dialog.open(ContinueTutorialDialog);
+      const result = await dialogRef.afterClosed().toPromise();
+      if (result) {
+        this.tutorialService.continueTutorial();
+        return;
+      } else {
+        this.tutorialService.skipTutorial();
+      }
+    }
+
     const id = this.configurationService.currentAccount;
     if (id !== -1) {
       try {
         await this.getAccount();
         await this.getTransactionList();
-
-        if (this.configurationService.balanceFirstUse ||
-          this.configurationService.incomeFirstUse ||
-          this.configurationService.spendingFirstUse) {
-          const dialogRef = this.dialog.open(ContinueTutorialDialog);
-          const continueTutorial: boolean = await dialogRef.afterClosed().toPromise();
-          if (continueTutorial) {
-            this.router.navigate(['/create-transaction']);
-            return;
-          }
-          else {
-            this.configurationService.balanceFirstUse = 
-            this.configurationService.incomeFirstUse = 
-            this.configurationService.spendingFirstUse =
-            this.configurationService.accountFirstUse = false;
-          }
-        }
       } catch {
         // TODO handle errors
       }

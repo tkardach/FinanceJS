@@ -9,6 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   export class ContinueTutorialDialog {
   
     constructor(
-      public dialogRef: MatDialogRef<ContinueTutorialDialog>) {}
-  
+      public dialogRef: MatDialogRef<ContinueTutorialDialog>) {
+        dialogRef.disableClose = true;
+    }
   }

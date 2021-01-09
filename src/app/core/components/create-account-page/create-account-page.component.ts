@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Account, Currency } from 'src/app/modules/account/shared/account.model';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { ConfigurationService } from 'src/app/shared/configuration.service';
+import { TutorialState } from '../../../shared/tutorial.model';
 import { AccountAlreadyExistsDialog } from '../dialogs/account-already-exists-dialog';
 import { CreateAccountIntroDialog } from '../dialogs/create-account-intro-dialog';
 import { DeleteAccountDialog } from '../dialogs/delete-account-dialog';
@@ -17,18 +18,27 @@ export class CreateAccountPageComponent implements OnInit {
   accountName: string;
   accountTitle: string = "Create Account";
   accountCurrency: Currency;
+  tutorialState: TutorialState;
+  accountExists: boolean = false;
 
   constructor(
     private configurationService: ConfigurationService,
     private accountService: AccountService,
     private dialog: MatDialog,
-    private router: Router) { }
+    private route: ActivatedRoute,
+    private router: Router) { 
+    this.tutorialState = parseInt(this.route.snapshot.paramMap.get('tutorial'));
+  }
 
   async ngOnInit(): Promise<void> {
-    const accounts = await this.accountService.getAccounts().toPromise();
-
+    if (this.configurationService.currentAccount !== -1) {
+      const account = await this.accountService.getAccount(this.configurationService.currentAccount).toPromise();
+      if (account)
+        this.accountExists = true;
+    }
+    
     // If account exists, check if we should use this account
-    if (accounts.length > 0) {
+    if (this.accountExists) {
       if (await this.useExistingAccount()) {
         this.router.navigate(['predict']);
         return;

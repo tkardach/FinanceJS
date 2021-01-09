@@ -79,7 +79,13 @@ export class AccountService {
         mergeMap((transactions: Transaction[]) => {
           let accountTransactions: Transaction[] = []
           
-          transactions = transactions.filter((trans) => trans.date < date);
+          transactions = transactions.filter((trans) => {
+            const newDate1 = new Date(trans.date);
+            const newDate2 = new Date(date);
+            newDate1.setHours(0,0,0,0);
+            newDate2.setHours(0,0,0,0);
+            return newDate1 <= newDate2;
+          });
           
           transactions.forEach((trans, index) => {
             // If single transaction, add balance and continue

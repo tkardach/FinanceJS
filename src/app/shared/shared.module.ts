@@ -5,6 +5,7 @@ import { DBConfig, NgxIndexedDBModule, NgxIndexedDBService } from 'ngx-indexed-d
 import { EnumToArrayPipe } from './enum-to-array.pipe';
 import { ResponsiveService } from './responsive.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { MaterialModule } from '../material/material.module';
 
 export function migrationFactory() {
   return {
@@ -49,12 +50,17 @@ const dbConfig: DBConfig = {
   migrationFactory
 }
 
+const declared = [
+  EnumToArrayPipe
+]
+
 @NgModule({
   declarations: [
-    EnumToArrayPipe
+    ...declared
   ],
   imports: [
     CommonModule,
+    MaterialModule,
     NgxIndexedDBModule.forRoot(dbConfig),
     NgxWebstorageModule.forRoot()
   ],
@@ -63,7 +69,7 @@ const dbConfig: DBConfig = {
     ResponsiveService
   ],
   exports: [
-    EnumToArrayPipe
+    ...declared
   ]
 })
 export class SharedModule {}

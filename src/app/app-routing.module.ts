@@ -5,14 +5,35 @@ import { AccountPredictionPageComponent } from './core/components/account-predic
 import { CreateAccountPageComponent } from './core/components/create-account-page/create-account-page.component';
 import { CreateTransactionPageComponent } from './core/components/create-transaction-page/create-transaction-page.component';
 import { HomePageComponent } from './core/components/home-page/home-page.component';
+import { TutorialGuard } from './shared/tutorial.guard';
+import { AccountGuard } from './shared/account.guard';
+import { CompositeRouteGuard } from './shared/composite-route.guard';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'account', component: AccountPageComponent },
-  { path: 'create-account', component: CreateAccountPageComponent },
-  { path: 'create-transaction', component: CreateTransactionPageComponent },
-  { path: 'predict', component: AccountPredictionPageComponent }
+  { 
+    path: 'account', 
+    component: AccountPageComponent, 
+    canActivate: [ AccountGuard, TutorialGuard ]
+  },
+  { 
+    path: 'create-account', 
+    component: CreateAccountPageComponent, 
+    canActivate: [TutorialGuard] 
+  },
+  { 
+    path: 'create-transaction', 
+    component: CreateTransactionPageComponent,
+    data: { routeGuards: [AccountGuard, TutorialGuard] },
+    canActivate: [ CompositeRouteGuard ]
+  },
+  { 
+    path: 'predict', 
+    component: AccountPredictionPageComponent, 
+    data: { routeGuards: [AccountGuard, TutorialGuard] },
+    canActivate: [ CompositeRouteGuard ]
+  }
 ];
 
 @NgModule({
