@@ -12,19 +12,19 @@
 .edit-transaction-form mat-form-field {
     width: 80%;
     padding-bottom: .8vh;
-    font-size: 2.4vh;
+    font-size: 2.2vh;
 }
 
 #submit {
     margin-bottom: 3vh;
-    font-size: 3vmin;
+    font-size: 3vh;
 }
 
 #title {
     font-weight: bold;
-    font-size: 4.6vmin;
-    padding: 6vh 0;
-    margin: 0 15px;
+    font-size: 2.4vh;
+    padding: 3vh 0;
+    margin: 0 5vw;
 }
 
 p {
@@ -39,7 +39,7 @@ p {
     
     #title {
         font-size: 30px;
-        padding: 40px 0px;
+        padding: 20px 0px;
     }
     
     #submit {
