@@ -15,6 +15,7 @@ import { getCurrencyType } from '../shared/utility';
 export class EditTransactionComponent implements OnInit {
 
   @Output() edit = new EventEmitter<Transaction>();
+  @Output() delete = new EventEmitter<number>();
   @Output() amountChange = new EventEmitter<number>();
 
   @Input() currency: Currency;
@@ -116,6 +117,14 @@ export class EditTransactionComponent implements OnInit {
       };
 
       this.edit.emit(editTransaction);
+    }
+  }
+
+  onDelete(): void {
+    if (this.transactionForm.invalid) return;
+
+    if (this._transaction) {
+      this.delete.emit(this._transaction.id);
     }
   }
 }

@@ -1,5 +1,6 @@
 <div mat-dialog-content>
     <app-edit-transaction 
         [transaction]="transaction"
-        (edit)="onEdit($event)"></app-edit-transaction>
+        (edit)="onEdit($event)"
+        (delete)="onDelete($event)"></app-edit-transaction>
 </div>

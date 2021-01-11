@@ -1,6 +1,10 @@
 <div class="account-prediction-page-mobile" *ngIf="isMobile">
     <div class="account-balance-mobile">
-        <app-account-balance [account]="account" (click)="onEditAccount($event)" [date]="selectedDate"></app-account-balance>
+        <app-account-balance 
+            [account]="account" 
+            [date]="selectedDate"
+            (click)="onEditAccount($event)" 
+            (amountChange)="onAmountChange($event)"></app-account-balance>
     </div>
     <div class="calendar-container-mobile">
         <mat-calendar class="calendar-mobile" [(selected)]="selectedDate"></mat-calendar>
@@ -8,7 +12,7 @@
 </div>
 
 <div class="account-prediction-page" *ngIf="!isMobile">
-    <div class="account-prediction-page-left">
+    <div class="account-prediction-page-left" [ngClass]="amountPositive ? 'positive-gradient' :' negative-gradient'">
         <div class="shadow"></div>
         <div class="calendar-container">
             <mat-calendar class="calendar" [(selected)]="selectedDate"></mat-calendar>
@@ -16,7 +20,11 @@
     </div>
     <div class="account-prediction-page-right">
         <div class="account-balance">
-            <app-account-balance [account]="account" (click)="onEditAccount($event)" [date]="selectedDate"></app-account-balance>
+            <app-account-balance 
+                [account]="account" 
+                [date]="selectedDate"
+                (click)="onEditAccount($event)" 
+                (amountChange)="onAmountChange($event)"></app-account-balance>
         </div>
         <div class="transaction-list-container">
             <div class="transaction-list">

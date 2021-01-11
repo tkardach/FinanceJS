@@ -53,7 +53,8 @@
                 [ngClass]="state === 0 ? '' : 'hidden'" 
                 [transaction]="editTransaction" 
                 (amountChange)="onTransactionAmountChange($event)"
-                (edit)="onEditTransaction($event)"></app-edit-transaction>
+                (edit)="onEditTransaction($event)"
+                (delete)="onDeleteTransaction($event)"></app-edit-transaction>
             <app-create-transaction 
                 *ngIf="state === 1"
                 title="Create Transaction"

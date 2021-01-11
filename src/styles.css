@@ -54,12 +54,12 @@ nav {
 
 .background-positive {
     transition: background-color 0.5s ease;
-    background-color:  #61ca53;
+    background-color:  #85e279;
 }
 
 .background-negative {
     transition: background-color 0.5s ease;
-    background-color:  #ce3c3c;
+    background-color:  #f16b6b;
 }
 
 button:focus {

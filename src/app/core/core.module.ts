@@ -26,6 +26,8 @@ import { EditAccountFormDialog } from './components/dialogs/edit-account-form-di
 import { CreateBalanceIntroDialog } from './components/dialogs/create-balance-intro-dialog';
 import { PredictPageIntroDialog } from './components/dialogs/predict-page-intro-dialog';
 import { ContinueTutorialDialog } from './components/dialogs/continue-tutorial-dialog';
+import { TransactionDeletedDialog } from './components/dialogs/transaction-deleted-dialog';
+import { DeleteTransactionDialog } from './components/dialogs/delete-transaction-dialog';
 
 
 const components = [
@@ -50,7 +52,9 @@ const components = [
   EditAccountFormDialog,
   CreateBalanceIntroDialog,
   PredictPageIntroDialog,
-  ContinueTutorialDialog
+  ContinueTutorialDialog,
+  TransactionDeletedDialog,
+  DeleteTransactionDialog
 ];
 
 

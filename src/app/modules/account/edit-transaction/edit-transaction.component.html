@@ -34,9 +34,21 @@
         </mat-form-field>
         
         <br>
-        <button mat-raised-button 
-            id="submit" 
-            [ngClass]="(amount | currencyToNumber) >= 0 ? 'background-positive' : 'background-negative'"
-            type="submit">Submit</button>
+        <div class="button-container">
+            <button mat-raised-button 
+                id="submit" 
+                class="button"
+                [ngClass]="(amount | currencyToNumber) >= 0 ? 'background-positive' : 'background-negative'"
+                type="submit">
+                Submit
+            </button>
+            <button mat-raised-button 
+                id="delete" 
+                type="button"
+                class="button background-negative"
+                (click)="onDelete()">
+                Delete
+            </button>
+        </div>
     </form>
 </div>

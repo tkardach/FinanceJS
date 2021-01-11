@@ -18,5 +18,6 @@
 @media(min-width: 380px) {
     .delete {
         width: auto;
+        line-height: 41px;
     }
 }

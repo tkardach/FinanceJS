@@ -23,17 +23,24 @@ export class AccountBalanceComponent implements OnInit {
     return this._account;
   }
 
+  @Input() set balance(balance: number) {
+    this._balance = balance;
+    this.amountChange.emit(balance);
+  }
+  get balance(): number {
+    return this._balance;
+  }
+
   @Input() set date(date: Date) {
     this._date = date;
     this.reloadAccount();
   }
-
   get date(): Date {
     return this._date;
   }
   
+  @Output() amountChange = new EventEmitter<number>();
   @Output() click: EventEmitter<Account> = new EventEmitter();
-
   
   constructor(private accountService: AccountService, private logger: NGXLogger) { }
 
@@ -50,7 +57,7 @@ export class AccountBalanceComponent implements OnInit {
       return;
     
     this.accountService.getAccountBalanceOnDate(this.account.id, this.date)
-      .then((balance) => this._balance = balance)
+      .then((balance) => this.balance = balance)
       .catch((reason) => this.logger.log(reason));
   }
 

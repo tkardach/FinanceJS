@@ -214,6 +214,14 @@ export class AccountService {
   }
 
   /**
+   * Delete the transaction from the database
+   * @param id id of the transaction to delete
+   */
+  deleteTransaction(id: number): Observable<Transaction[]> {
+    return this.dbService.delete(Settings.DB_TRANSACTION_STORE, id);
+  }
+
+  /**
    * Get all transactions in the database
    * @returns Observable<Transaction[]> all transactions in the database
    */

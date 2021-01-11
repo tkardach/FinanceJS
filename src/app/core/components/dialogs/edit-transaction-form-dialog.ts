@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, EventEmitter } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Transaction } from 'src/app/modules/account/shared/transaction.model';
 
@@ -9,6 +9,8 @@ import { Transaction } from 'src/app/modules/account/shared/transaction.model';
   })
   export class EditTransactionFormDialog {
     transaction: Transaction;
+    delete = new EventEmitter<number>();
+    edit = new EventEmitter<Transaction>();
 
     constructor(
       public dialogRef: MatDialogRef<EditTransactionFormDialog>,
@@ -17,6 +19,10 @@ import { Transaction } from 'src/app/modules/account/shared/transaction.model';
     }
     
     onEdit(editTransaction: Transaction) {
-      this.dialogRef.close(editTransaction);
+      this.edit.emit(editTransaction);
+    }
+
+    onDelete(id: number) {
+      this.delete.emit(id);
     }
   }

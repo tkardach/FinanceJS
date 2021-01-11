@@ -20,6 +20,7 @@ export class AccountPredictionPageComponent implements OnInit {
   isMobile: boolean;
   transactions: Transaction[];
   account: Account;
+  amountPositive: boolean;
 
   tutorialState: TutorialState;
   continueTutorial: boolean;
@@ -83,6 +84,10 @@ export class AccountPredictionPageComponent implements OnInit {
     this.responsiveService.getMobileStatus().subscribe(isMobile => {
       this.isMobile = isMobile
     });
+  }
+
+  onAmountChange(amount: number) {
+    this.amountPositive = !amount || amount >= 0 ? true : false;
   }
 
   onDateChange() {

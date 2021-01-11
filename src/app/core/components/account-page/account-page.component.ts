@@ -15,6 +15,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
 import { TutorialService } from 'src/app/shared/tutorial.service';
 import { r3JitTypeSourceSpan } from '@angular/compiler';
+import { DeleteTransactionDialog } from '../dialogs/delete-transaction-dialog';
+import { TransactionDeletedDialog } from '../dialogs/transaction-deleted-dialog';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -122,10 +124,15 @@ export class AccountPageComponent implements OnInit {
 
     if (this.isMobile) {
       const dialogRef = this.dialog.open(EditTransactionFormDialog, {data: transaction});
-      dialogRef.afterClosed().subscribe(result => {
-        if (result)
-          this.onEditTransaction(result);
-      })
+      dialogRef.componentInstance.edit.subscribe((transaction: Transaction) => {
+        dialogRef.close();
+        this.onEditTransaction(transaction);
+      });
+
+      dialogRef.componentInstance.delete.subscribe((id: number) => {
+        dialogRef.close();
+        this.onDeleteTransaction(id);
+      });
     }
   }
 
@@ -176,6 +183,22 @@ export class AccountPageComponent implements OnInit {
           dialogRef.close();
         }, 2000);
       });
+  }
+  
+  onDeleteTransaction(id: number) {
+    const dialogRef = this.dialog.open(DeleteTransactionDialog);
+    dialogRef.afterClosed().subscribe(remove => {
+      if (!remove) return;
+
+      this.accountService.deleteTransaction(id).subscribe(store => {
+        const dialogRef = this.dialog.open(TransactionDeletedDialog);
+        setTimeout(async () => {
+          await this.getTransactionList();
+          this.state = AccountPageState.CreateTransaction;
+          dialogRef.close();
+        }, 2000);
+      })
+    })
   }
 
   onEditAccount(account: Account) {
