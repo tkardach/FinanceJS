@@ -151,6 +151,8 @@ export class AccountPageComponent implements OnInit {
         this.selectedTransactions[transaction.id] = !this.selectedTransactions[transaction.id];
       else
         this.selectedTransactions[transaction.id] = true;
+      
+      if (this.isMobile) return;
     }
 
     this.editTransaction = transaction;

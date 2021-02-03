@@ -17,18 +17,20 @@
                 <p class="edit-transactions-button" (click)="onDeselectAllTransactions()">Unselect All</p>
                 <p class="edit-transactions-button" (click)="onDeleteSelectedTransactions()">Delete Selected</p>
             </div>
-            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransactionSelect()">
-                <div class="create-transaction-content-left">
+            <div id="create-transaction" class="modify-transaction-button" (click)="onCreateTransactionSelect()">
+                <div class="modify-transaction-content-left">
                     <i class="fas fa-plus add"></i>
-                    <p id="create-transaction-text">Create Transaction</p>
+                    <p class="modify-transaction-text">Create Transaction</p>
                 </div>
-                <div class="create-transaction-content-right">
+                <div class="modify-transaction-content-right">
                     <i class="fas fa-chevron-right fa-lg chevron"></i>
                 </div>
             </div>
             <app-transaction 
                 *ngFor="let transaction of transactions" 
                 [transaction]="transaction"
+                [editMode]="editTransactions"
+                [isSelected]="selectedTransactions[transaction.id]"
                 (click)="onEditTransactionSelect($event)"></app-transaction>
         </div>
     </div>
