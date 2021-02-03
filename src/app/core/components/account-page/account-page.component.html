@@ -5,7 +5,18 @@
                 [account]="account"
                 (click)="onEditAccountSelect($event)"></app-account>
         </div>
-        <div class="transaction-list">
+        <div class="transaction-list-mobile">
+            <div id="edit-transaction" class="modify-transaction-button">
+                <div class="modify-transaction-content-left">
+                    <i class="fas fa-th-list icon edit"></i>
+                    <p class="modify-transaction-text" (click)="editTransactions = !editTransactions">Edit Transactions</p>
+                </div>
+            </div>
+            <div *ngIf="editTransactions" class="edit-transactions-group">
+                <p class="edit-transactions-button" (click)="onSelectAllTransactions()">Select All</p>
+                <p class="edit-transactions-button" (click)="onDeselectAllTransactions()">Unselect All</p>
+                <p class="edit-transactions-button" (click)="onDeleteSelectedTransactions()">Delete Selected</p>
+            </div>
             <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransactionSelect()">
                 <div class="create-transaction-content-left">
                     <i class="fas fa-plus add"></i>
@@ -28,20 +39,35 @@
         <div class="account-description">
             <app-account [account]="account" (click)="onEditAccountSelect($event)"></app-account>
         </div>
-        <div class="transaction-list">
-            <div id="create-transaction" class="create-transaction-button" (click)="onCreateTransactionSelect()">
-                <div class="create-transaction-content-left">
-                    <i class="fas fa-plus add"></i>
-                    <p id="create-transaction-text">Create Transaction</p>
+        <div class="transaction-list-container">
+            <div class="transaction-list">
+                <div id="edit-transaction" class="modify-transaction-button" (click)="editTransactions = !editTransactions">
+                    <div class="modify-transaction-content-left">
+                        <i class="fas fa-th-list icon edit"></i>
+                        <p class="modify-transaction-text">Edit Transactions</p>
+                    </div>
                 </div>
-                <div class="create-transaction-content-right">
-                    <i class="fas fa-chevron-right fa-lg chevron"></i>
+                <div *ngIf="editTransactions" class="edit-transactions-group">
+                    <p class="edit-transactions-button" (click)="onSelectAllTransactions()">Select All</p>
+                    <p class="edit-transactions-button" (click)="onDeselectAllTransactions()">Unselect All</p>
+                    <p class="edit-transactions-button" (click)="onDeleteSelectedTransactions()">Delete Selected</p>
                 </div>
+                <div id="create-transaction" class="modify-transaction-button" (click)="onCreateTransactionSelect()">
+                    <div class="modify-transaction-content-left">
+                        <i class="fas fa-plus add icon"></i>
+                        <p class="modify-transaction-text">Create Transaction</p>
+                    </div>
+                    <div class="modify-transaction-content-right">
+                        <i class="fas fa-chevron-right fa-lg chevron"></i>
+                    </div>
+                </div>
+                <app-transaction 
+                    *ngFor="let transaction of transactions" 
+                    [transaction]="transaction"
+                    [editMode]="editTransactions"
+                    [isSelected]="selectedTransactions[transaction.id]"
+                    (click)="onEditTransactionSelect($event)"></app-transaction>
             </div>
-            <app-transaction 
-                *ngFor="let transaction of transactions" 
-                [transaction]="transaction"
-                (click)="onEditTransactionSelect($event)"></app-transaction>
         </div>
     </div>
     <div class="account-page-right" [ngClass]="positiveTransaction ? 'positive-gradient' : 'negative-gradient'">

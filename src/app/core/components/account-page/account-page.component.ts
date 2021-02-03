@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Account } from 'src/app/modules/account/shared/account.model';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
-import { CreateTransaction, Timespan, Transaction } from 'src/app/modules/account/shared/transaction.model';
+import { CreateTransaction, Transaction } from 'src/app/modules/account/shared/transaction.model';
 import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
 import { AccountEdittedDialog } from '../dialogs/account-editted-dialog';
@@ -14,9 +14,9 @@ import { TransactionEdittedDialog } from '../dialogs/transaction-editted-dialog'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
 import { TutorialService } from 'src/app/shared/tutorial.service';
-import { r3JitTypeSourceSpan } from '@angular/compiler';
 import { DeleteTransactionDialog } from '../dialogs/delete-transaction-dialog';
 import { TransactionDeletedDialog } from '../dialogs/transaction-deleted-dialog';
+import { TransactionsDeletedDialog } from '../dialogs/transactions-deleted-dialog';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -36,6 +36,8 @@ export class AccountPageComponent implements OnInit {
   state = AccountPageState.CreateTransaction;
   isMobile: boolean;
   continueTutorial: boolean;
+  editTransactions: boolean = false;
+  selectedTransactions = {};
 
   private _positiveTransaction: boolean = true;
   set positiveTransaction(positive: boolean) {
@@ -118,7 +120,39 @@ export class AccountPageComponent implements OnInit {
     this.positiveTransaction = amount >= 0;
   }
 
+  onSelectAllTransactions() {
+    const selectAll = (acc, curr: Transaction) => {
+      acc[curr.id] = true;
+      return acc;
+    }
+    this.selectedTransactions = this.transactions.reduce(selectAll, {});
+  }
+
+  onDeselectAllTransactions() {
+    this.selectedTransactions = {};
+  }
+
+  onDeleteSelectedTransactions() {
+    const ids = Object.keys(this.selectedTransactions).filter(
+      key => this.selectedTransactions[key]
+    ).map(x => +x);
+    this.accountService.deleteTransactions(ids).subscribe((list: Transaction[]) => {
+      const dialogRef = this.dialog.open(TransactionsDeletedDialog);
+      setTimeout(async () => {
+        await this.getTransactionList();
+        dialogRef.close();
+      }, 2000);
+    });
+  }
+
   onEditTransactionSelect(transaction: Transaction) {
+    if (this.editTransactions) {
+      if (this.selectedTransactions[transaction.id])
+        this.selectedTransactions[transaction.id] = !this.selectedTransactions[transaction.id];
+      else
+        this.selectedTransactions[transaction.id] = true;
+    }
+
     this.editTransaction = transaction;
     this.state = AccountPageState.EditTransaction;
 

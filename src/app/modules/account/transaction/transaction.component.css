@@ -53,6 +53,21 @@
     font-weight: bold;
 }
 
+.transaction-content-left .icon {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.transaction-content-left .fa-square {
+    color: rgb(139, 139, 139);
+}
+
+.transaction-content-left .fa-check-square {
+    color: #61ca53;
+}
+
 .transaction-content-right .chevron {
     display: inline-block;
 

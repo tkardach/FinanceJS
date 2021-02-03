@@ -28,6 +28,8 @@ import { PredictPageIntroDialog } from './components/dialogs/predict-page-intro-
 import { ContinueTutorialDialog } from './components/dialogs/continue-tutorial-dialog';
 import { TransactionDeletedDialog } from './components/dialogs/transaction-deleted-dialog';
 import { DeleteTransactionDialog } from './components/dialogs/delete-transaction-dialog';
+import { TransactionCreatedDialog } from './components/dialogs/transaction-created-dialog';
+import { TransactionsDeletedDialog } from './components/dialogs/transactions-deleted-dialog';
 
 
 const components = [
@@ -44,7 +46,7 @@ const components = [
   DeleteAccountDialog,
   CreateIncomeIntroDialog,
   CreateSpendingIntroDialog,
-  TransactionEdittedDialog,
+  TransactionCreatedDialog,
   TransactionEdittedDialog,
   AccountEdittedDialog,
   EditTransactionFormDialog,
@@ -54,6 +56,7 @@ const components = [
   PredictPageIntroDialog,
   ContinueTutorialDialog,
   TransactionDeletedDialog,
+  TransactionsDeletedDialog,
   DeleteTransactionDialog
 ];
 

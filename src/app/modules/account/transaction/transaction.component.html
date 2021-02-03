@@ -1,6 +1,10 @@
 <div id="transaction" class="transaction" (click)="onClick($event)">
     <div class="transaction-content-left">
-        <p id="name">{{getNameString()}}</p>
+        <p id="name">
+            <i *ngIf="editMode && !isSelected" class="far fa-square icon"></i>
+            <i *ngIf="editMode && isSelected" class="far fa-check-square icon"></i>
+            {{getNameString()}}
+        </p>
     </div>
     <div class="transaction-content-right">
         <p 

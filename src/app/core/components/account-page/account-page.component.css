@@ -14,7 +14,8 @@
     height: 35%;
 }
 
-.transaction-list {
+.transaction-list-mobile {
+    background-color: white;
     width: 100%;
     height: auto;
     overflow:hidden; 
@@ -28,32 +29,61 @@
 
 /*#region Create Transaction Button*/
 
-.create-transaction-button {
+.edit-transactions-group {
+    width: 100%;
+    height: 75px;
+    vertical-align: middle;
+    display: table;
+}
+
+.edit-transactions-button {
+    display: table-cell;
+    font-weight: bold;
+    width: 33.33%;
+    height: 75px;
+    cursor:pointer;
+    vertical-align: middle;
+    text-align: center;
+    color: rgb(139, 139, 139);
+    padding: 0 10px;
+}
+.edit-transactions-button:hover {
+    background-color: whitesmoke;
+}
+
+.modify-transaction-button {
     font-weight: bold;
     line-height: 75px;
     height: 75px;
     cursor:pointer;
 }
 
-.create-transaction-button:hover {
+.modify-transaction-button:hover {
     background-color: whitesmoke;
 }
 
-.create-transaction-content-left {
+.modify-transaction-content-left {
     max-width: 80%;
     float: left;
     padding-left: 2%;
 }
 
-.create-transaction-content-left .add {
+.modify-transaction-content-left .icon {
     display: inline-block;
     margin-left: 10px;
-    color: #61ca53;
     vertical-align: middle;
     font-size: 20px;
 }
 
-#create-transaction-text {
+.modify-transaction-content-left .add {
+    color: #61ca53;
+}
+
+.modify-transaction-content-left .edit {
+    color: rgb(139, 139, 139);
+}
+
+.modify-transaction-text {
     display: inline-block;
     color: rgb(139, 139, 139);
     text-align: right;
@@ -61,12 +91,12 @@
     font-weight: bold;
 }
 
-.create-transaction-content-right {
+.modify-transaction-content-right {
     float: right;
     padding-right: 2%;
 }
 
-.create-transaction-content-right .chevron {
+.modify-transaction-content-right .chevron {
     display: inline-block;
     color: rgb(139, 139, 139);
     vertical-align: middle;
@@ -99,6 +129,22 @@ p {
     top: 0px;
     right: 62%;
     bottom: 0px;
+}
+
+.transaction-list-container {
+    background-color: white;
+    position: relative;
+    height: 65%;
+}
+
+.transaction-list {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow:hidden; 
+    overflow-y:auto;
 }
 
 .positive-gradient {

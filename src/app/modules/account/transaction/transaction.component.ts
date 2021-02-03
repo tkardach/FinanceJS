@@ -10,10 +10,13 @@ import { getAmountString } from '../shared/utility';
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
+  @Input() editMode: boolean = false;
+  @Input() isSelected: boolean = false;
+
   @Input() transaction: Transaction;
   @Input() currency: Currency = Currency.USD;
 
-  @Output() public click: EventEmitter<Transaction> = new EventEmitter();
+  @Output() public click = new EventEmitter<Transaction>();
 
   constructor() { }
 

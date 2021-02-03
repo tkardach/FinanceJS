@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { Observable, of, zip } from 'rxjs';
+import { Observable, of, throwError, zip } from 'rxjs';
 import { Account, Currency } from './account.model';
 import { Timespan, Transaction } from './transaction.model';
 import { Settings } from '../../../shared/shared.settings';
-import { map, mergeMap } from 'rxjs/operators';
+import { concatMap, map, mergeMap, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
 
 @Injectable({
@@ -184,9 +184,9 @@ export class AccountService {
     account: number, name: string, amount: number, date: Date, recurrence: Timespan): Observable<number> {
     return this.getAccount(account)
       .pipe(
-        mergeMap((value: Account, index: number) => {
+        concatMap((value: Account) => {
           if (!value)
-            return of(undefined);
+            return throwError('Account does not exist');
           
           let transaction: Transaction = {
             id: 0,
@@ -219,6 +219,17 @@ export class AccountService {
    */
   deleteTransaction(id: number): Observable<Transaction[]> {
     return this.dbService.delete(Settings.DB_TRANSACTION_STORE, id);
+  } 
+
+  /**
+   * Delete the transactions from the database
+   * @param ids list of ides of transactions to delete
+   */
+  deleteTransactions(ids: number[]): Observable<Transaction[]> {
+    const idObs = of(...ids);
+    return idObs.pipe(
+      switchMap((id: number) => this.dbService.delete(Settings.DB_TRANSACTION_STORE, id)) 
+    )
   }
 
   /**

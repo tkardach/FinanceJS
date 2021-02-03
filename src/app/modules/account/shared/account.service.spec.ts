@@ -156,10 +156,10 @@ describe('AccountService', () => {
   
       try {
         const key = await service.createTransaction(0, name, amount, date, recurrence).toPromise();
-        expect(key).toBe(undefined);
+        expect(false).toBeTruthy();
       }
       catch (error) {
-        expect(false).toBeTruthy();
+        expect(true).toBeTruthy();
       }
     });  
   });
@@ -306,6 +306,49 @@ describe('AccountService', () => {
     });  
   });
   
+  describe('deleteTransactions()', () => {
+    it('should return delete all transactions listed and return remaining', async () => {
+      const accountName = 'accountName';
+      const accountCurrency = Currency.USD;
+  
+      const name = 'transactionName';
+      const amount = 95.50;
+      const date = new Date();
+      const recurrence = Timespan.Biweekly;
+  
+      try {
+        const otherAccountKey = await service.createAccount('otherAccount', accountCurrency).toPromise();
+        const accountKey = await service.createAccount(accountName, accountCurrency).toPromise();
+        expect(accountKey).toBeGreaterThan(-1);
+  
+        const ids = [];
+
+        ids.push(await service.createTransaction(accountKey, 'first_trans_1', amount, date, recurrence).toPromise());
+        ids.push(await service.createTransaction(accountKey, 'second_trans_1', amount, date, recurrence).toPromise());
+        await service.createTransaction(accountKey, 'third_trans_1', amount, date, recurrence).toPromise();
+        ids.push(await service.createTransaction(otherAccountKey, 'first_trans_2', amount, date, recurrence).toPromise());
+        ids.push(await service.createTransaction(otherAccountKey, 'second_trans_2', amount, date, recurrence).toPromise());
+        await service.createTransaction(otherAccountKey, 'third_trans_2', amount, date, recurrence).toPromise();
+        
+        const transactions = await service.getTransactions().toPromise();
+        expect(transactions.length).toBe(6);
+
+        const remaining_transactions = await service.deleteTransactions(ids).toPromise();
+        expect(remaining_transactions.length).toBe(2);
+        expect(remaining_transactions).toContain(jasmine.objectContaining({
+          name: 'third_trans_2'
+        }))
+        expect(remaining_transactions).toContain(jasmine.objectContaining({
+          name: 'third_trans_1'
+        }))
+      }
+      catch (error) {
+        console.error(error);
+        expect(false).toBeTruthy();
+      }
+    });  
+  });
+
   describe('getAccountTransactionsOnDate(accountId, date)', () => {
     it('should return all transactions for an account up to a specified date', async () => {
       const accountName = 'accountName';
