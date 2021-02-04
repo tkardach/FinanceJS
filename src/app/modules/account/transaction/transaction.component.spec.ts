@@ -40,11 +40,6 @@ describe('TransactionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display transaction name', () => {
-    let name = el.querySelector('#name');
-    expect(name.innerHTML).toBe(transaction.name);
-  });
-
   it('should display green amount if positive', () => {
     let amount = el.querySelector('#amount');
     expect(amount.classList).toContain('currency-color-positive');
@@ -78,8 +73,6 @@ describe('TransactionComponent', () => {
     component.transaction = transaction;
     fixture.detectChanges();
     
-    let name = el.querySelector('#name');
-    expect(name.innerHTML).toBe(transaction.name);
     let amount = el.querySelector('#amount');
     fixture.detectChanges();
     expect(amount.classList).toContain('currency-color-negative');

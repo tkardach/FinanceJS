@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CompositeRouteGuard } from './composite-route.guard';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CompositeRouteGuard', () => {
   let guard: CompositeRouteGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule]
+    });
     guard = TestBed.inject(CompositeRouteGuard);
   });
 

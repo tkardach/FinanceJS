@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateAccountPageComponent } from './create-account-page.component';
+import { AccountModule } from 'src/app/modules/account/account.module';
+import { AccountService } from 'src/app/modules/account/shared/account.service';
 
 describe('CreateAccountPageComponent', () => {
   let component: CreateAccountPageComponent;
@@ -8,6 +10,8 @@ describe('CreateAccountPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [AccountModule],
+      providers: [AccountService],
       declarations: [ CreateAccountPageComponent ]
     })
     .compileComponents();

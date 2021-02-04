@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EditAccountComponent } from './edit-account.component';
+import { EnumToArrayPipe } from 'src/app/shared/enum-to-array.pipe';
 
 describe('EditAccountComponent', () => {
   let component: EditAccountComponent;
@@ -8,7 +8,7 @@ describe('EditAccountComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditAccountComponent ]
+      declarations: [ EditAccountComponent, EnumToArrayPipe ]
     })
     .compileComponents();
   }));

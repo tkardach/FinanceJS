@@ -4,6 +4,7 @@
         <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput
+                id="name"
                 placeholder="Ex. Income; Bills; Savings" 
                 formControlName="name">
         </mat-form-field>
@@ -11,6 +12,7 @@
         <mat-form-field>
             <mat-label>Amount</mat-label>
             <input matInput
+            id="amount"
             [value]="amount | currencyToNumber | currency:getCurrencyType():'symbol'" 
             (blur)="amount=$event.target.value"
             formControlName="amount">
@@ -18,6 +20,7 @@
 
         <mat-form-field>
             <input matInput
+                id="date"
                 [matDatepicker]="picker" 
                 placeholder="Transaction Date"   
                 formControlName="date">
@@ -28,6 +31,7 @@
         <mat-form-field>
             <mat-label>Frequency</mat-label>
             <mat-select
+                id="recurrence"
                 formControlName="recurrence">
               <mat-option *ngFor="let item of timespans | enumToArray" [value]="item.index">{{item.name}}</mat-option>
             </mat-select>

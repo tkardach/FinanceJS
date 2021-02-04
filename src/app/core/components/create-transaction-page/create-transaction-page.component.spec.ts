@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateTransactionPageComponent } from './create-transaction-page.component';
+import { AccountService } from 'src/app/modules/account/shared/account.service';
 
 describe('CreateTransactionPageComponent', () => {
   let component: CreateTransactionPageComponent;
@@ -8,7 +9,8 @@ describe('CreateTransactionPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateTransactionPageComponent ]
+      declarations: [ CreateTransactionPageComponent ],
+      providers: [AccountService]
     })
     .compileComponents();
   }));
