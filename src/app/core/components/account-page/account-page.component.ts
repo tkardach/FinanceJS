@@ -205,7 +205,7 @@ export class AccountPageComponent implements OnInit {
       transaction.recurrence).subscribe(id => {
         const dialogRef = this.dialog.open(TransactionCreatedDialog);
         setTimeout(async () => {
-          await this.getTransactionList();
+          location.reload();
           dialogRef.close();
         }, 2000);
       });
