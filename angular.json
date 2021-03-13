@@ -21,8 +21,7 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "./node_modules/font-awesome/fonts"
+              "src/assets"
             ],
             "styles": [
               "./node_modules/font-awesome/css/font-awesome.css",
