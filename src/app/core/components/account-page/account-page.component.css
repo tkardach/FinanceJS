@@ -45,10 +45,16 @@
     vertical-align: middle;
     text-align: center;
     color: rgb(139, 139, 139);
+    -moz-box-shadow:    inset 0 0 7px #000000;
+    -webkit-box-shadow: inset 0 0 7px #000000;
+    box-shadow:         inset 0 0 7px #000000;
     padding: 0 10px;
 }
 .edit-transactions-button:hover {
     background-color: whitesmoke;
+}
+.edit-transactions-button:active {
+    background-color: rgb(218, 218, 218);
 }
 
 .modify-transaction-button {

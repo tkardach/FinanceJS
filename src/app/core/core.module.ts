@@ -30,6 +30,7 @@ import { TransactionDeletedDialog } from './components/dialogs/transaction-delet
 import { DeleteTransactionDialog } from './components/dialogs/delete-transaction-dialog';
 import { TransactionCreatedDialog } from './components/dialogs/transaction-created-dialog';
 import { TransactionsDeletedDialog } from './components/dialogs/transactions-deleted-dialog';
+import { DeleteTransactionsDialog } from './components/dialogs/delete-transactions-dialog';
 
 
 const components = [
@@ -57,7 +58,8 @@ const components = [
   ContinueTutorialDialog,
   TransactionDeletedDialog,
   TransactionsDeletedDialog,
-  DeleteTransactionDialog
+  DeleteTransactionDialog,
+  DeleteTransactionsDialog
 ];
 
 

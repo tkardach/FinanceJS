@@ -17,6 +17,7 @@ import { TutorialService } from 'src/app/shared/tutorial.service';
 import { DeleteTransactionDialog } from '../dialogs/delete-transaction-dialog';
 import { TransactionDeletedDialog } from '../dialogs/transaction-deleted-dialog';
 import { TransactionsDeletedDialog } from '../dialogs/transactions-deleted-dialog';
+import { DeleteTransactionsDialog } from '../dialogs/delete-transactions-dialog';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -136,13 +137,21 @@ export class AccountPageComponent implements OnInit {
     const ids = Object.keys(this.selectedTransactions).filter(
       key => this.selectedTransactions[key]
     ).map(x => +x);
-    this.accountService.deleteTransactions(ids).subscribe((list: Transaction[]) => {
-      const dialogRef = this.dialog.open(TransactionsDeletedDialog);
-      setTimeout(async () => {
-        await this.getTransactionList();
-        dialogRef.close();
-      }, 2000);
-    });
+
+    if (ids.length === 0) return;
+
+    const dialogRef = this.dialog.open(DeleteTransactionsDialog);
+    dialogRef.afterClosed().subscribe(remove => {
+      if (!remove) return;
+
+      this.accountService.deleteTransactions(ids).subscribe((list: Transaction[]) => {
+        const dialogRef = this.dialog.open(TransactionsDeletedDialog);
+        setTimeout(async () => {
+          await this.getTransactionList();
+          dialogRef.close();
+        }, 2000);
+      });
+    })
   }
 
   onEditTransactionSelect(transaction: Transaction) {
