@@ -60,11 +60,11 @@
     font-size: 20px;
 }
 
-.transaction-content-left .fa-square {
+.transaction-content-left .fa-square-o {
     color: rgb(139, 139, 139);
 }
 
-.transaction-content-left .fa-check-square {
+.transaction-content-left .fa-check-square-o {
     color: #61ca53;
 }
 
