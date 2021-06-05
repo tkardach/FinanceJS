@@ -6,10 +6,11 @@ import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { Transaction } from 'src/app/modules/account/shared/transaction.model';
 import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
-import { PredictPageIntroDialog } from '../dialogs/predict-page-intro-dialog';
-import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
+import { PredictPageIntroDialog } from '../../../dialogs/predict-page-intro-dialog';
+import { ContinueTutorialDialog } from '../../../dialogs/continue-tutorial-dialog';
 import { TutorialService } from 'src/app/shared/tutorial.service';
 import { TutorialState } from 'src/app/shared/tutorial.model';
+import { NoAccountExistsDialog } from '../../../dialogs/no-account-exists-dialog';
 
 @Component({
   selector: 'app-account-prediction-page',
@@ -75,6 +76,7 @@ export class AccountPredictionPageComponent implements OnInit {
         // TODO handle error
       });
     } else {
+      this.dialog.open(NoAccountExistsDialog);
       this.router.navigate(['/create-account']);
       return;
     }

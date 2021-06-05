@@ -5,19 +5,20 @@ import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { CreateTransaction, Transaction } from 'src/app/modules/account/shared/transaction.model';
 import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { ResponsiveService } from 'src/app/shared/responsive.service';
-import { AccountEdittedDialog } from '../dialogs/account-editted-dialog';
-import { CreateTransactionFormDialog } from '../dialogs/create-transaction-form-dialog';
-import { EditAccountFormDialog } from '../dialogs/edit-account-form-dialog';
-import { EditTransactionFormDialog } from '../dialogs/edit-transaction-form-dialog';
-import { TransactionCreatedDialog } from '../dialogs/transaction-created-dialog';
-import { TransactionEdittedDialog } from '../dialogs/transaction-editted-dialog';
+import { AccountEdittedDialog } from '../../../dialogs/account-editted-dialog';
+import { CreateTransactionFormDialog } from '../../../dialogs/create-transaction-form-dialog';
+import { EditAccountFormDialog } from '../../../dialogs/edit-account-form-dialog';
+import { EditTransactionFormDialog } from '../../../dialogs/edit-transaction-form-dialog';
+import { TransactionCreatedDialog } from '../../../dialogs/transaction-created-dialog';
+import { TransactionEdittedDialog } from '../../../dialogs/transaction-editted-dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ContinueTutorialDialog } from '../dialogs/continue-tutorial-dialog';
+import { ContinueTutorialDialog } from '../../../dialogs/continue-tutorial-dialog';
 import { TutorialService } from 'src/app/shared/tutorial.service';
-import { DeleteTransactionDialog } from '../dialogs/delete-transaction-dialog';
-import { TransactionDeletedDialog } from '../dialogs/transaction-deleted-dialog';
-import { TransactionsDeletedDialog } from '../dialogs/transactions-deleted-dialog';
-import { DeleteTransactionsDialog } from '../dialogs/delete-transactions-dialog';
+import { DeleteTransactionDialog } from '../../../dialogs/delete-transaction-dialog';
+import { TransactionDeletedDialog } from '../../../dialogs/transaction-deleted-dialog';
+import { TransactionsDeletedDialog } from '../../../dialogs/transactions-deleted-dialog';
+import { DeleteTransactionsDialog } from '../../../dialogs/delete-transactions-dialog';
+import { NoAccountExistsDialog } from '../../../dialogs/no-account-exists-dialog';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -72,6 +73,7 @@ export class AccountPageComponent implements OnInit {
         this.tutorialService.continueTutorial();
         return;
       } else {
+        this.dialog.open(NoAccountExistsDialog);
         this.tutorialService.skipTutorial();
       }
     }

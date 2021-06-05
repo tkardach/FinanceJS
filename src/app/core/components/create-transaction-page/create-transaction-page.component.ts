@@ -4,9 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { Timespan, Transaction } from 'src/app/modules/account/shared/transaction.model';
 import { ConfigurationService } from 'src/app/shared/configuration.service';
-import { CreateIncomeIntroDialog } from '../dialogs/create-income-intro-dialog';
-import { CreateSpendingIntroDialog } from '../dialogs/create-spending-intro-dialog';
-import { CreateBalanceIntroDialog } from '../dialogs/create-balance-intro-dialog';
+import { CreateIncomeIntroDialog } from '../../../dialogs/create-income-intro-dialog';
+import { CreateSpendingIntroDialog } from '../../../dialogs/create-spending-intro-dialog';
+import { CreateBalanceIntroDialog } from '../../../dialogs/create-balance-intro-dialog';
 import { TutorialState } from 'src/app/shared/tutorial.model';
 
 @Component({

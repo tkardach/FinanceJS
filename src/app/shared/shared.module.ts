@@ -6,6 +6,8 @@ import { EnumToArrayPipe } from './enum-to-array.pipe';
 import { ResponsiveService } from './responsive.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MaterialModule } from '../material/material.module';
+import { CoreModule } from '../core/core.module';
+import { DialogsService } from '../dialogs/dialogs.service';
 
 export function migrationFactory() {
   return {
@@ -66,7 +68,8 @@ const declared = [
   ],
   providers: [
     NgxIndexedDBService,
-    ResponsiveService
+    ResponsiveService,
+    DialogsService
   ],
   exports: [
     ...declared

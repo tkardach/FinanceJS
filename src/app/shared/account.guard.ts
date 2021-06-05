@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ConfigurationService } from './configuration.service';
 import { AccountService } from '../modules/account/shared/account.service';
+import { DialogsService } from '../dialogs/dialogs.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,15 @@ export class AccountGuard implements CanActivate {
   constructor(
     private configurationService: ConfigurationService,
     private accountService: AccountService,
-    private router: Router) {}
+    private router: Router,
+    private dialogService: DialogsService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // If current account does not exist, redirect to create-account
     if (this.configurationService.currentAccount === -1) {
+      this.dialogService.showNoAccountExistsDialog();
       this.router.navigate(['/create-account']);
       return false;
     }

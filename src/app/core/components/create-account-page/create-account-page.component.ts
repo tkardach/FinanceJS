@@ -5,9 +5,9 @@ import { Account, Currency } from 'src/app/modules/account/shared/account.model'
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { ConfigurationService } from 'src/app/shared/configuration.service';
 import { TutorialState } from '../../../shared/tutorial.model';
-import { AccountAlreadyExistsDialog } from '../dialogs/account-already-exists-dialog';
-import { CreateAccountIntroDialog } from '../dialogs/create-account-intro-dialog';
-import { DeleteAccountDialog } from '../dialogs/delete-account-dialog';
+import { AccountAlreadyExistsDialog } from '../../../dialogs/account-already-exists-dialog';
+import { CreateAccountIntroDialog } from '../../../dialogs/create-account-intro-dialog';
+import { DeleteAccountDialog } from '../../../dialogs/delete-account-dialog';
 
 @Component({
   selector: 'app-create-account-page',
