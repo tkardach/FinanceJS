@@ -19,6 +19,7 @@ export class HomePageComponent implements OnInit {
   startPlanning() {
     this.router.navigate(['/create-account']);
 
+
     if (this.configurationService.firstUse) {
     }
     else {

@@ -18,7 +18,6 @@ import { DeleteTransactionDialog } from '../../../dialogs/delete-transaction-dia
 import { TransactionDeletedDialog } from '../../../dialogs/transaction-deleted-dialog';
 import { TransactionsDeletedDialog } from '../../../dialogs/transactions-deleted-dialog';
 import { DeleteTransactionsDialog } from '../../../dialogs/delete-transactions-dialog';
-import { NoAccountExistsDialog } from '../../../dialogs/no-account-exists-dialog';
 
 enum AccountPageState {
   EditTransaction = 0,
@@ -73,7 +72,6 @@ export class AccountPageComponent implements OnInit {
         this.tutorialService.continueTutorial();
         return;
       } else {
-        this.dialog.open(NoAccountExistsDialog);
         this.tutorialService.skipTutorial();
       }
     }

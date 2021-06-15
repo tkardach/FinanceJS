@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NoAccountExistsDialog } from './no-account-exists-dialog';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class DialogsService {
 
   constructor(private dialog: MatDialog) { }
 
-  showNoAccountExistsDialog() {
-    this.dialog.open(NoAccountExistsDialog);
+  showNoAccountExistsDialog(): MatDialogRef<NoAccountExistsDialog> {
+    return this.dialog.open(NoAccountExistsDialog);
   }
 }

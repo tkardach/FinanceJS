@@ -15,7 +15,8 @@ const routes: Routes = [
   { 
     path: 'account', 
     component: AccountPageComponent, 
-    canActivate: [ AccountGuard, TutorialGuard ]
+    data: { routeGuards: [AccountGuard, TutorialGuard] },
+    canActivate: [ CompositeRouteGuard ]
   },
   { 
     path: 'create-account', 

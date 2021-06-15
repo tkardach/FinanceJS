@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ConfigurationService } from './configuration.service';
@@ -21,8 +21,9 @@ export class AccountGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // If current account does not exist, redirect to create-account
     if (this.configurationService.currentAccount === -1) {
-      this.dialogService.showNoAccountExistsDialog();
-      this.router.navigate(['/create-account']);
+      this.dialogService.showNoAccountExistsDialog().afterClosed().subscribe(() => {
+        this.router.navigate(['/create-account']);
+      });
       return false;
     }
     // If account exists, redirect to create-account

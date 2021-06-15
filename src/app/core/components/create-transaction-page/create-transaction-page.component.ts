@@ -87,7 +87,6 @@ export class CreateTransactionPageComponent implements OnInit {
       transaction.amount,
       transaction.date,
       transaction.recurrence).subscribe((id) => {
-        console.log(id)
         if (this.tutorialState === TutorialState.CreateBalance)
           this.configurationService.balanceFirstUse = false;
         if (this.tutorialState === TutorialState.CreateIncome)

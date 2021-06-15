@@ -17,7 +17,7 @@ export class CompositeRouteGuard implements CanActivate {
       var compositeCanActivateObservable: Observable<boolean | UrlTree> = of(true);
 
       let routeGuards = route.data.routeGuards;
-  
+      
       if(routeGuards) {
         for(var i = 0; i < routeGuards.length; i++) {
           let routeGuard = this.injector.get<CanActivate>(routeGuards[i]);
@@ -35,6 +35,7 @@ export class CompositeRouteGuard implements CanActivate {
               }
             }
           }));
+          if (!canActivateObservable) return compositeCanActivateObservable;
         }
       }
   
