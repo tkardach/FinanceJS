@@ -6,7 +6,7 @@ export function getAmountString(amount: number, currency: Currency): string {
         case Currency.CAD:
             return amount.toLocaleString('en-CA', { style: 'currency', currency: 'CAD'});
         case Currency.EUR:
-            return amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR'});
+            return amount.toLocaleString('en-GB', { style: 'currency', currency: 'EUR'});
         case Currency.JPY:
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         case Currency.USD:

@@ -30,7 +30,8 @@
             <div class="transaction-list">
                 <app-view-transaction 
                     *ngFor="let transaction of transactions" 
-                    [transaction]="transaction"></app-view-transaction>
+                    [transaction]="transaction"
+                    [currency]="account?.currency"></app-view-transaction>
             </div>
         </div>
     </div>

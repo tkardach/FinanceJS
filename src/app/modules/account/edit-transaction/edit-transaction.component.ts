@@ -5,7 +5,7 @@ import { Currency } from '../shared/account.model';
 import { AccountService } from '../shared/account.service';
 import { CurrencyToNumberPipe } from '../shared/currency-to-number.pipe';
 import { Timespan, Transaction } from '../shared/transaction.model';
-import { getCurrencyType } from '../shared/utility';
+import { getCurrencyType, getAmountString } from '../shared/utility';
 
 @Component({
   selector: 'app-edit-transaction',

@@ -31,6 +31,7 @@
                 [transaction]="transaction"
                 [editMode]="editTransactions"
                 [isSelected]="selectedTransactions[transaction.id]"
+                [currency]="account?.currency"
                 (click)="onEditTransactionSelect($event)"></app-transaction>
         </div>
     </div>
@@ -68,6 +69,7 @@
                     [transaction]="transaction"
                     [editMode]="editTransactions"
                     [isSelected]="selectedTransactions[transaction.id]"
+                    [currency]="account?.currency"
                     (click)="onEditTransactionSelect($event)"></app-transaction>
             </div>
         </div>
@@ -80,12 +82,14 @@
             <app-edit-transaction 
                 [ngClass]="state === 0 ? '' : 'hidden'" 
                 [transaction]="editTransaction" 
+                [currency]="account?.currency"
                 (amountChange)="onTransactionAmountChange($event)"
                 (edit)="onEditTransaction($event)"
                 (delete)="onDeleteTransaction($event)"></app-edit-transaction>
             <app-create-transaction 
                 *ngIf="state === 1"
                 title="Create Transaction"
+                [currency]="account?.currency"
                 (amountChange)="onTransactionAmountChange($event)"
                 (create)="onCreateTransaction($event)"></app-create-transaction>
             <app-edit-account 
